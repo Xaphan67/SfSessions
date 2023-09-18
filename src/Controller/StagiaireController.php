@@ -16,7 +16,6 @@ class StagiaireController extends AbstractController
     #[Route('/stagiaires', name: 'app_stagiaire')]
     public function index(StagiaireRepository $stagiaireRepository): Response
     {
-
         // Récupère tout les stagiaires et les classe dans l'ordre alphabétique de leur nom
         $stagiaires = $stagiaireRepository->findBy([], ["nom" => "ASC"]);
 

@@ -1,7 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SessionController!{% endblock %}
+{% block title %}Liste des sessions{% endblock %}
 
 {% block body %}
-
+<h1>Liste des sessions</h1>
+{% if sessions | length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom</th>
+            <th>Places</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.formation }}</td>
+            <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+            <td>{{ session.places }}</td>
+            <td>{{ session.dateDebut | date("d/m/Y") }}</td>
+            <td>{{ session.dateFin | date("d/m/Y") }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Il n'y à aucune session en base de donnée.</p>
+{% endif %}
 {% endblock %}

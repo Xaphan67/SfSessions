@@ -163,7 +163,7 @@ class Session
         return $this;
     }
 
-    // Affichele nom de la session quand l'objet est affiché à l'écran
+    // Affichele nom de la formation quand l'objet est affiché à l'écran
     public function __toString()
     {
         return $this->nom;
