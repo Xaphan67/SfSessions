@@ -1,7 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StagiaireController!{% endblock %}
+{% block title %}Liste des stagiaires{% endblock %}
 
 {% block body %}
 
+<a href="{{ path('new_stagiaire') }}">Ajouter un stagiaire</a>
+
+<h1>Liste des stagiaires</h1>
+{% if stagiaires | length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th>Nom et Prénom</th>
+            <th>Sexe</th>
+            <th>Date de naissance</th>
+            <th>Ville</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Editer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stagiaire in stagiaires %}
+        <tr>
+            <td>{{ stagiaire}}</td>
+            <td>{{ stagiaire.sexe }}</td>
+            <td>{{ stagiaire.dateNaissance | date("d/m/Y") }}</td>
+            <td>{{ stagiaire.ville }}</td>
+            <td>{{ stagiaire.email }}</td>
+            <td>{{ stagiaire.telephone }}</td>
+            <td><a href="{{ path('edit_stagiaire', {'id':stagiaire.id}) }}">Editer ce stagiaire</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>Il n'y a aucun stagiaire enregisté</p>
+{% endif %}
 {% endblock %}

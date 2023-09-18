@@ -160,4 +160,10 @@ class Stagiaire
 
         return $this;
     }
+
+    // Affichele nom et prénom du stagiaire quand l'objet est affiché à l'écran
+    public function __toString()
+    {
+        return $this->nom . " " . $this->prenom;
+    }
 }
