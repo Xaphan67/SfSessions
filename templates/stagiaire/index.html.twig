@@ -23,7 +23,7 @@
     <tbody>
         {% for stagiaire in stagiaires %}
         <tr>
-            <td>{{ stagiaire}}</td>
+            <td><a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire}}</a></td>
             <td>{{ stagiaire.sexe }}</td>
             <td>{{ stagiaire.dateNaissance | date("d/m/Y") }}</td>
             <td>{{ stagiaire.ville }}</td>
