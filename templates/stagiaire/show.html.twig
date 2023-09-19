@@ -14,5 +14,10 @@
     <li>Téléphone : {{ stagiaire.telephone }}</li>
 </ul>
 <h2>Sessions prévues :</h2>
+<ul>
+    {% for session in stagiaire.sessions %}
+    <li><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a> (du {{ session.dateDebut | date("d/m/Y") }} au {{ session.dateFin | date("d/m/Y") }})</li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
