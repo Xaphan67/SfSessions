@@ -3,6 +3,9 @@
 {% block title %}Liste des sessions{% endblock %}
 
 {% block body %}
+
+<a href="{{ path('new_session') }}">Ajouter une session</a>
+
 <h1>Liste des sessions</h1>
 {% if sessions | length > 0 %}
 <table>
@@ -10,9 +13,12 @@
         <tr>
             <th>Formation</th>
             <th>Nom</th>
-            <th>Places</th>
+            <th>Places théoriques</th>
+            <th>Places réservées</th>
+            <th>Places restantes</th>
             <th>Date de début</th>
             <th>Date de fin</th>
+            <th>Editer</th>
         </tr>
     </thead>
     <tbody>
@@ -21,8 +27,11 @@
             <td>{{ session.formation }}</td>
             <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
             <td>{{ session.places }}</td>
+            <td>{{ session.stagiaires | length }}</td>
+            <td>{{ session.places - session.stagiaires | length }}</td>
             <td>{{ session.dateDebut | date("d/m/Y") }}</td>
             <td>{{ session.dateFin | date("d/m/Y") }}</td>
+            <td><a href="{{ path('edit_session', {'id':session.id}) }}">Editer</a></td>
         </tr>
     {% endfor %}
     </tbody>
