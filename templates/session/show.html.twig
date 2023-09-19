@@ -5,14 +5,43 @@
 {% block body %}
 
 <h1>{{ session }}</h1>
+
 <ul>
-    {% set cat = '' %}
-    {% for programme in session.programmes %}
-    {% if cat !=  programme.module.categorie  %}
-    <li>{{ programme.module.categorie }}</li>
+    <li>Date de début : {{ session.dateDebut | date("d/m/Y") }}</li>
+    <li>Date de fin : {{ session.dateFin | date("d/m/Y") }}</li>
+    <li>Nombre de places : {{ session.places }}</li>
+    <li>Nombre de places disponibles : {{ session.places - session.stagiaires | length }}</li>
+    <li>Nombre de modules : {{ session.programmes | length }}</li>
+</ul>
+
+<h2>Stagiaires inscrits</h2>
+<ul>
+    {% if session.stagiaires | length > 0 %}
+        {% for stagiaire in session.stagiaires %}
+            <li>{{ stagiaire }}</li>
+        {% endfor %}
+    {% else %}
+        <li>Il n'y à aucun stagiaire inscrit à cette session.</li>
     {% endif %}
-    {% set cat = programme.module.categorie %}
-    <li>{{ programme.module.nom }} - {{ programme.nbJours }} jours</li>
+    
+</ul>
+
+<h2>Stagiaires non inscrits</h2>
+<ul>
+    {% if stagiairesNonInscrits | length > 0 %}
+        {% for stagiaire in stagiairesNonInscrits %}
+            <li>{{ stagiaire }}</li>
+        {% endfor %}
+    {% else %}
+        <li>Tout les stagiaires sont inscrits à cette session.</li>
+    {% endif %}
+    
+</ul>
+
+<h2>Programme</h2>
+<ul>
+    {% for programme in session.programmes %}
+        <li>{{ programme.module }} - {{ programme.module.categorie}} - {{ programme.nbJours }} jours</li>
     {% endfor %}
 </ul>
 
