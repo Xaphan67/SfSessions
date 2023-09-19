@@ -53,7 +53,8 @@ class StagiaireController extends AbstractController
 
         return $this->render('stagiaire/new.html.twig', [
             'formAddStagiaire' => $form,
-            'edit' => $stagiaire->getId()
+            'edit' => $stagiaire->getId(),
+            'stagiaire' => $stagiaire
         ]);
     }
 

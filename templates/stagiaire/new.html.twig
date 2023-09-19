@@ -4,6 +4,6 @@
 
 {% block body %}
 
-<h1>Ajouter un stagiaire</h1>
+<h1>{% if edit %}Editer le stagiaire {{ stagiaire }}{% else %}Ajouter un stagiaire{% endif %}</h1>
 {{ form(formAddStagiaire) }}
 {% endblock %}
