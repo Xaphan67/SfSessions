@@ -88,4 +88,10 @@ class Module
 
         return $this;
     }
+
+    // Affiche le nom du module quand l'objet est affiché
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }

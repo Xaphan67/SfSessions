@@ -71,4 +71,10 @@ class Programme
 
         return $this;
     }
+
+    // Affiche le nom du programme quand l'objet est affiché
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }

@@ -72,4 +72,10 @@ class Categorie
 
         return $this;
     }
+
+    // Affiche le nom de la catégorie quand l'objet est affiché
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }

@@ -5,6 +5,15 @@
 {% block body %}
 
 <h1>{{ session }}</h1>
-<p>A faire !</p>
+<ul>
+    {% set cat = '' %}
+    {% for programme in session.programmes %}
+    {% if cat !=  programme.module.categorie  %}
+    <li>{{ programme.module.categorie }}</li>
+    {% endif %}
+    {% set cat = programme.module.categorie %}
+    <li>{{ programme.module.nom }} - {{ programme.nbJours }} jours</li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
