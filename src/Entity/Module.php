@@ -71,7 +71,7 @@ class Module
     {
         if (!$this->programmes->contains($programme)) {
             $this->programmes->add($programme);
-            $programme->setModules($this);
+            $programme->setModule($this);
         }
 
         return $this;
@@ -81,8 +81,8 @@ class Module
     {
         if ($this->programmes->removeElement($programme)) {
             // set the owning side to null (unless already changed)
-            if ($programme->getModules() === $this) {
-                $programme->setModules(null);
+            if ($programme->getModule() === $this) {
+                $programme->setModule(null);
             }
         }
 

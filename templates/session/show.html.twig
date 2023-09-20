@@ -46,7 +46,9 @@
 <ul>
     {% if session.programmes | length > 0 %}
     {% for programme in session.programmes %}
-    <li>{{ programme.module }} - {{ programme.module.categorie}} - {{ programme.nbJours }} jours</li>
+    <li>{{ programme.module }} - {{ programme.module.categorie}} - {{ programme.nbJours }} jours -
+        <a href="{{ path('removeModule_session', {'id':session.id, 'programme':programme.id}) }}">Retirer</a>
+    </li>
     {% endfor %}
     {% else %}
     <li>Aucun module n'est programmé pour cette session.</li>
@@ -57,7 +59,13 @@
 <ul>
     {% if modulesNonProgrammes | length > 0 %}
     {% for module in modulesNonProgrammes %}
-    <li>{{ module }} - {{ module.categorie }}</li>
+    <li>
+        {{ module }} - {{ module.categorie }}
+        <form action="{{ path('addModule_session', {'id':session.id, 'module':module.id}) }}" method="post">
+            <input type="number" name="duree" id="duree" min="1">
+            <button type="submit" name="submit" id="submit">Programmer</button>
+        </form>
+    </li>
     {% endfor %}
     {% else %}
     <li>Tout les modules existant ont étés programmés pour cette session.</li>

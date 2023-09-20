@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
@@ -59,7 +61,7 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/show/{id}', name: 'show_session')]
-    public function show(Session $session, SessionRepository $sessionRepository): Response
+    public function show(Session $session, SessionRepository $sessionRepository, EntityManagerInterface $entityManager): Response
     {
         // Récupère tous les stagiaires qui ne sont pas inscrits à la session
         $stagiairesNonInscrits = $sessionRepository->findStagiairesNonInscrits($session->getId());
@@ -93,6 +95,43 @@ class SessionController extends AbstractController
     {
         // Retire le stagiaire de la session
         $session->removeStagiaire($stagiaire);
+        // Prepare PDO
+        $entityManager->persist($session);
+        // Execute PDO
+        $entityManager->flush();
+
+        // Redirige vers la page de la session
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/addModule/{id}/{module}', name: 'addModule_session')]
+    public function addModule(Session $session, Module $module, Request $request,  EntityManagerInterface $entityManager): Response
+    {
+        // Récupère le nombre de jour pour le programme à ajouter, s'il y en à un
+        $nbJours = $request->request->get('duree');
+
+        // Ajoute le programme
+        if ($nbJours != null) {
+            $programme = new Programme();
+            $programme->setSession($session);
+            $programme->setModule($module);
+            $programme->setNbJours($nbJours);
+
+            // Prpare PDO
+            $entityManager->persist($programme);
+            // Execute PDO
+            $entityManager->flush();
+        }
+
+        // Redirige vers la page de la session
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/removeProgramme/{id}/{programme}', name: 'removeModule_session')]
+    public function removeProgramme(Session $session, Programme $programme, EntityManagerInterface $entityManager): Response
+    {
+        // Retire le programme de la session
+        $session->removeProgramme($programme);
         // Prepare PDO
         $entityManager->persist($session);
         // Execute PDO
