@@ -17,31 +17,38 @@
 <h2>Stagiaires inscrits</h2>
 <ul>
     {% if session.stagiaires | length > 0 %}
-        {% for stagiaire in session.stagiaires %}
-            <li>{{ stagiaire }}</li>
-        {% endfor %}
+    {% for stagiaire in session.stagiaires %}
+    <li>{{ stagiaire }}</li>
+    {% endfor %}
     {% else %}
-        <li>Il n'y à aucun stagiaire inscrit à cette session.</li>
+    <li>Il n'y à aucun stagiaire inscrit à cette session.</li>
     {% endif %}
-    
+
 </ul>
 
 <h2>Stagiaires non inscrits</h2>
 <ul>
     {% if stagiairesNonInscrits | length > 0 %}
-        {% for stagiaire in stagiairesNonInscrits %}
-            <li>{{ stagiaire }}</li>
-        {% endfor %}
+    {% for stagiaire in stagiairesNonInscrits %}
+    <li>{{ stagiaire }}</li>
+    {% endfor %}
     {% else %}
-        <li>Tout les stagiaires sont inscrits à cette session.</li>
+    <li>Tout les stagiaires sont inscrits à cette session.</li>
     {% endif %}
-    
+
 </ul>
 
 <h2>Programme</h2>
 <ul>
     {% for programme in session.programmes %}
-        <li>{{ programme.module }} - {{ programme.module.categorie}} - {{ programme.nbJours }} jours</li>
+    <li>{{ programme.module }} - {{ programme.module.categorie}} - {{ programme.nbJours }} jours</li>
+    {% endfor %}
+</ul>
+
+<h2>Modules non programmés</h2>
+<ul>
+    {% for module in modulesNonProgrammes %}
+    <li>{{ module }} - {{ module.categorie }}</li>
     {% endfor %}
 </ul>
 

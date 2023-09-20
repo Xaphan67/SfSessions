@@ -26,11 +26,10 @@ class SessionController extends AbstractController
 
     #[Route('/session/new', name: 'new_session')]
     #[Route('/session/edit/{id}', name: 'edit_session')]
-    public function new_edit(Session $session = null, Request $request, EntityManagerInterface $entityManager) : Response
+    public function new_edit(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // Instancie une nouvelle session lors d'un ajout
-        if (!$session)
-        {
+        if (!$session) {
             $session = new Session();
         }
 
@@ -46,7 +45,7 @@ class SessionController extends AbstractController
             $entityManager->persist($session);
             // Execute PDO
             $entityManager->flush();
-            
+
             // Redirige vers la lliste des sessions
             return $this->redirectToRoute('app_session');
         }
@@ -59,14 +58,18 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/show/{id}', name: 'show_session')]
-    public function show(Session $session, SessionRepository $sessionRepository) : Response
+    public function show(Session $session, SessionRepository $sessionRepository): Response
     {
         // Récupère tous les stagiaires qui ne sont pas inscrits à la session
-        $stagiairesNonInscrits = $sessionRepository->findNonInscrits($session->getId());
+        $stagiairesNonInscrits = $sessionRepository->findStagiairesNonInscrits($session->getId());
+
+        // Récupère tous les modules qui ne sont pas programmmés pour la session
+        $modulesNonProgrammes = $sessionRepository->findModulesNonProgrammes($session->getId());
 
         return $this->render('session/show.html.twig', [
             'session' => $session,
-            'stagiairesNonInscrits' => $stagiairesNonInscrits
+            'stagiairesNonInscrits' => $stagiairesNonInscrits,
+            'modulesNonProgrammes' => $modulesNonProgrammes
         ]);
     }
 }
