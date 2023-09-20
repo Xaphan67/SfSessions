@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,7 +47,7 @@ class SessionController extends AbstractController
             // Execute PDO
             $entityManager->flush();
 
-            // Redirige vers la lliste des sessions
+            // Redirige vers la liste des sessions
             return $this->redirectToRoute('app_session');
         }
 
@@ -71,5 +72,33 @@ class SessionController extends AbstractController
             'stagiairesNonInscrits' => $stagiairesNonInscrits,
             'modulesNonProgrammes' => $modulesNonProgrammes
         ]);
+    }
+
+    #[Route('/session/addStagiaire/{id}/{stagiaire}', name: 'addStagiaire_session')]
+    public function addStagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
+    {
+        // Ajoute le stagiaire à la session
+        $session->addStagiaire($stagiaire);
+        // Prepare PDO
+        $entityManager->persist($session);
+        // Execute PDO
+        $entityManager->flush();
+
+        // Redirige vers la page de la session
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/removeStagiaire/{id}/{stagiaire}', name: 'removeStagiaire_session')]
+    public function removeStagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
+    {
+        // Retire le stagiaire de la session
+        $session->removeStagiaire($stagiaire);
+        // Prepare PDO
+        $entityManager->persist($session);
+        // Execute PDO
+        $entityManager->flush();
+
+        // Redirige vers la page de la session
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
     }
 }

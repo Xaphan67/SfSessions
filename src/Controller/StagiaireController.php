@@ -26,11 +26,10 @@ class StagiaireController extends AbstractController
 
     #[Route('/stagiaire/new', name: 'new_stagiaire')]
     #[Route('/stagiaire/edit/{id}', name: 'edit_stagiaire')]
-    public function new_edit(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager) : Response
+    public function new_edit(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // Instancie un nouveau stagiaire lors d'un ajout
-        if (!$stagiaire)
-        {
+        if (!$stagiaire) {
             $stagiaire = new Stagiaire();
         }
 
@@ -46,7 +45,7 @@ class StagiaireController extends AbstractController
             $entityManager->persist($stagiaire);
             // Execute PDO
             $entityManager->flush();
-            
+
             // Redirige vers la lliste des stagiaires
             return $this->redirectToRoute('app_stagiaire');
         }
@@ -59,7 +58,7 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/show/{id}', name: 'show_stagiaire')]
-    public function show(Stagiaire $stagiaire) : Response
+    public function show(Stagiaire $stagiaire): Response
     {
         return $this->render('stagiaire/show.html.twig', [
             'stagiaire' => $stagiaire

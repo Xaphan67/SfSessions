@@ -18,7 +18,9 @@
 <ul>
     {% if session.stagiaires | length > 0 %}
     {% for stagiaire in session.stagiaires %}
-    <li>{{ stagiaire }}</li>
+    <li>{{ stagiaire }} -
+        <a href="{{ path('removeStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Désinscrire</a>
+    </li>
     {% endfor %}
     {% else %}
     <li>Il n'y à aucun stagiaire inscrit à cette session.</li>
@@ -30,7 +32,9 @@
 <ul>
     {% if stagiairesNonInscrits | length > 0 %}
     {% for stagiaire in stagiairesNonInscrits %}
-    <li>{{ stagiaire }}</li>
+    <li>{{ stagiaire }} -
+        <a href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Inscrire</a>
+    </li>
     {% endfor %}
     {% else %}
     <li>Tout les stagiaires sont inscrits à cette session.</li>
@@ -40,16 +44,25 @@
 
 <h2>Programme</h2>
 <ul>
+    {% if session.programmes | length > 0 %}
     {% for programme in session.programmes %}
     <li>{{ programme.module }} - {{ programme.module.categorie}} - {{ programme.nbJours }} jours</li>
     {% endfor %}
+    {% else %}
+    <li>Aucun module n'est programmé pour cette session.</li>
+    {% endif %}
 </ul>
 
 <h2>Modules non programmés</h2>
 <ul>
+    {% if modulesNonProgrammes | length > 0 %}
     {% for module in modulesNonProgrammes %}
     <li>{{ module }} - {{ module.categorie }}</li>
     {% endfor %}
+    {% else %}
+    <li>Tout les modules existant ont étés programmés pour cette session.</li>
+    {% endif %}
+
 </ul>
 
 {% endblock %}
