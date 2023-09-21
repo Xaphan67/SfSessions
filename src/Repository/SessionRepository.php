@@ -139,7 +139,7 @@ class SessionRepository extends ServiceEntityRepository
     }
 
     /* Afficher les sessions passées */
-    public function findSessionsPasses()
+    public function findSessionsPassees()
     {
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();

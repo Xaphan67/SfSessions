@@ -6,6 +6,7 @@
 <h1>Bienvenue !</h1>
 
 <h2>Sessions en cours</h2>
+{% if sessionsEnCours | length > 0 %}
 <table>
     <thead>
         <tr>
@@ -30,8 +31,12 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>Il n'y à aucune session en cours.</p>
+{% endif %}
 
 <h2>Sessions à venir</h2>
+{% if sessionsAVenir | length > 0 %}
 <table>
     <thead>
         <tr>
@@ -56,8 +61,12 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>Il n'y à aucune session à venir.</p>
+{% endif %}
 
 <h2>Sessions passées</h2>
+{% if sessionsPasses | length > 0 %}
 <table>
     <thead>
         <tr>
@@ -82,4 +91,8 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>Il n'y à aucune sessions passées.</p>
+{% endif %}
+
 {% endblock %}
