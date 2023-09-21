@@ -1,7 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FormationController!{% endblock %}
+{% block title %}Liste des Formations{% endblock %}
 
 {% block body %}
+
+<a href="{{ path('new_formation') }}">Ajouter une formation</a>
+
+<h1>Liste des formations</h1>
+{% if formations | length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th>Intitulé</th>
+            <th>Editer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for formation in formations %}
+        <tr>
+            <td>{{ formation }}</td>
+            <td><a href="{{ path('edit_formation', {'id':formation.id}) }}">Editer cette formation</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>Il n'y a aucune formation.</p>
+{% endif %}
 
 {% endblock %}
