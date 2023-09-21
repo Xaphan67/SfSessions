@@ -1,7 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ModuleController!{% endblock %}
+{% block title %}Liste des modules{% endblock %}
 
 {% block body %}
+<a href="{{ path('new_categorie') }}">Ajouter un module</a>
+
+<h1>Liste des modules</h1>
+
+<p>Il y à {{ pagination.getTotalItemCount }} modules enregistrés :</p>
+<ul>
+    {% for module in pagination %}
+    <li>{{ module }} - {{ module.categorie }} - <a href="{{ path('edit_module', {'id':module.id}) }}">Editer</a></li>
+    {% endfor %}
+</ul>
+
+<div>
+    {{ knp_pagination_render(pagination) }}
+</div>
 
 {% endblock %}

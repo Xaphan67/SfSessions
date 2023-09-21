@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un module{% endblock %}
+
+{% block body %}
+
+<h1>{% if edit %}Editer le module {{ module }}{% else %}Ajouter un module{% endif %}</h1>
+{{ form(formAddModule) }}
+
+{% endblock %}
