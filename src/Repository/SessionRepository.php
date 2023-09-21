@@ -104,4 +104,53 @@ class SessionRepository extends ServiceEntityRepository
         $query = $sub->getQuery();
         return $query->getResult();
     }
+
+    /* Afficher les sessions en cours */
+    public function findSessionsEnCours()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('s')
+        ->from('App\Entity\Session', 's')
+        ->where('s.dateDebut <= :now')
+        ->andWhere('s.dateFin >= :now')
+        ->setParameter('now', new \DateTime());
+
+        // renvoyer le résultat
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    /* Afficher les sessions à venir */
+    public function findSessionsAVenir()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('s')
+            ->from('App\Entity\Session', 's')
+            ->where('s.dateDebut > :now')
+            ->setParameter('now', new \DateTime());
+
+        // renvoyer le résultat
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    /* Afficher les sessions passées */
+    public function findSessionsPasses()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('s')
+            ->from('App\Entity\Session', 's')
+            ->where('s.dateFin < :now')
+            ->setParameter('now', new \DateTime());
+
+        // renvoyer le résultat
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
 }

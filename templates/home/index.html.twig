@@ -4,4 +4,82 @@
 
 {% block body %}
 <h1>Bienvenue !</h1>
+
+<h2>Sessions en cours</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Session</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+            <th>Editer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessionsEnCours %}
+        <tr>
+            <td>{{ session.formation }}</td>
+            <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+            <td>{{ session.dateDebut | date("d/m/Y") }}</td>
+            <td>{{ session.dateFin | date("d/m/Y") }}</td>
+            <td>{{ session.stagiaires | length }} / {{ session.places }}</td>
+            <td><a href="{{ path('edit_session', {'id':session.id}) }}">Editer</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Sessions à venir</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Session</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+            <th>Editer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessionsAVenir %}
+        <tr>
+            <td>{{ session.formation }}</td>
+            <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+            <td>{{ session.dateDebut | date("d/m/Y") }}</td>
+            <td>{{ session.dateFin | date("d/m/Y") }}</td>
+            <td>{{ session.stagiaires | length }} / {{ session.places }}</td>
+            <td><a href="{{ path('edit_session', {'id':session.id}) }}">Editer</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Sessions passées</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Session</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+            <th>Editer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessionsPasses %}
+        <tr>
+            <td>{{ session.formation }}</td>
+            <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+            <td>{{ session.dateDebut | date("d/m/Y") }}</td>
+            <td>{{ session.dateFin | date("d/m/Y") }}</td>
+            <td>{{ session.stagiaires | length }} / {{ session.places }}</td>
+            <td><a href="{{ path('edit_session', {'id':session.id}) }}">Editer</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
