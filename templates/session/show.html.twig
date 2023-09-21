@@ -30,15 +30,20 @@
 
 <h2>Stagiaires non inscrits</h2>
 <ul>
-    {% if stagiairesNonInscrits | length > 0 %}
-    {% for stagiaire in stagiairesNonInscrits %}
-    <li>{{ stagiaire }} -
-        <a href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Inscrire</a>
-    </li>
-    {% endfor %}
+    {% if session.stagiaires | length < session.places %}
+        {% if stagiairesNonInscrits | length > 0 %}
+        {% for stagiaire in stagiairesNonInscrits %}
+        <li>{{ stagiaire }} -
+            <a href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Inscrire</a>
+        </li>
+        {% endfor %}
+        {% else %}
+        <li>Tout les stagiaires sont inscrits à cette session.</li>
+        {% endif %}
     {% else %}
-    <li>Tout les stagiaires sont inscrits à cette session.</li>
+        <li>Cette session est complète.</li>
     {% endif %}
+    
 
 </ul>
 

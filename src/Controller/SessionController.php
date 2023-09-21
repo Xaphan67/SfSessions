@@ -79,12 +79,16 @@ class SessionController extends AbstractController
     #[Route('/session/addStagiaire/{id}/{stagiaire}', name: 'addStagiaire_session')]
     public function addStagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
     {
-        // Ajoute le stagiaire à la session
-        $session->addStagiaire($stagiaire);
-        // Prepare PDO
-        $entityManager->persist($session);
-        // Execute PDO
-        $entityManager->flush();
+        // Vérifie qu'il reste des places dans la session
+        if (count($session->getStagiaires()) < $session->getPlaces())
+        {
+            // Ajoute le stagiaire à la session
+            $session->addStagiaire($stagiaire);
+            // Prepare PDO
+            $entityManager->persist($session);
+            // Execute PDO
+            $entityManager->flush();
+        }
 
         // Redirige vers la page de la session
         return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
