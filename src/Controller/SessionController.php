@@ -80,8 +80,7 @@ class SessionController extends AbstractController
     public function addStagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
     {
         // Vérifie qu'il reste des places dans la session
-        if (count($session->getStagiaires()) < $session->getPlaces())
-        {
+        if (count($session->getStagiaires()) < $session->getPlaces()) {
             // Ajoute le stagiaire à la session
             $session->addStagiaire($stagiaire);
             // Prepare PDO
@@ -143,5 +142,14 @@ class SessionController extends AbstractController
 
         // Redirige vers la page de la session
         return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/delete/{id}', name: 'delete_session')]
+    public function delete(Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
     }
 }

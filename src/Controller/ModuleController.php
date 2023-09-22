@@ -59,7 +59,7 @@ class ModuleController extends AbstractController
             $entityManager->flush();
 
             // Redirige vers la liste des modules
-            return $this->redirectToRoute('app_modules');
+            return $this->redirectToRoute('app_module');
         }
 
         return $this->render('module/new.html.twig', [
