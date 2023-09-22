@@ -13,7 +13,8 @@
 {% if categories | length > 0 %}
 <ul>
     {% for categorie in categories %}
-    <li>{{ categorie }} - <a href="{{ path('edit_categorie', {'id':categorie.id}) }}">Editer</a></li>
+    <li>{{ categorie }} - <a href="{{ path('edit_categorie', {'id':categorie.id}) }}">Editer</a> - <a
+            href="{{ path('delete_categorie', {'id':categorie.id}) }}">Supprimer</a></li>
     {% endfor %}
     {% else %}
     <li>Il n'y a aucune catégorie.</li>
@@ -27,7 +28,8 @@
 <p>Il y à {{ pagination.getTotalItemCount }} modules enregistrés :</p>
 <ul>
     {% for module in pagination %}
-    <li>{{ module }} - {{ module.categorie }} - <a href="{{ path('edit_module', {'id':module.id}) }}">Editer</a></li>
+    <li>{{ module }} - {{ module.categorie }} - <a href="{{ path('edit_module', {'id':module.id}) }}">Editer</a> - <a
+            href="{{ path('delete_module', {'id':module.id}) }}">Supprimer</a></li>
     {% endfor %}
 </ul>
 
