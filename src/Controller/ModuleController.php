@@ -19,9 +19,11 @@ class ModuleController extends AbstractController
     #[Route('/module', name: 'app_module')]
     public function index(CategorieRepository $categorieRepository, ModuleRepository $moduleRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Récupère la liste des catégories et modules dans l'ordre alphabétique de leur nom
         $categories = $categorieRepository->findBy([], ["nom" => "ASC"]);
         $modules = $moduleRepository->findBy([], ["nom" => "ASC"]);
 
+        // Crée la pagination pour la liste des modules
         $pagination = $paginator->paginate(
             $modules,
             $request->query->getInt('page', 1), /*page number*/
