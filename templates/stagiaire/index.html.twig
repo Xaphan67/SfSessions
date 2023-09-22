@@ -30,7 +30,10 @@
             <td>{{ stagiaire.ville }}</td>
             <td>{{ stagiaire.email }}</td>
             <td>{{ stagiaire.telephone }}</td>
-            <td><a href="{{ path('edit_stagiaire', {'id':stagiaire.id}) }}">Editer ce stagiaire</a></td>
+            <td>
+                <a href="{{ path('edit_stagiaire', {'id':stagiaire.id}) }}">Editer ce stagiaire</a>
+                <a href="{{ path('delete_stagiaire', {'id':stagiaire.id}) }}">Supprimer ce stagiaire</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
