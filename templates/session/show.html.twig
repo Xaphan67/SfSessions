@@ -18,8 +18,8 @@
 <ul>
     {% if session.stagiaires | length > 0 %}
     {% for stagiaire in session.stagiaires %}
-    <li>{{ stagiaire }} -
-        <a href="{{ path('removeStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Désinscrire</a>
+    <li><a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire }}</a>
+        - <a href="{{ path('removeStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Désinscrire</a>
     </li>
     {% endfor %}
     {% else %}
@@ -31,8 +31,8 @@
 <ul>
     {% if session.stagiaires | length < session.places %} {% if stagiairesNonInscrits | length> 0 %}
         {% for stagiaire in stagiairesNonInscrits %}
-        <li>{{ stagiaire }} -
-            <a href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Inscrire</a>
+        <li><a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire }}</a>
+            - <a href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Inscrire</a>
         </li>
         {% endfor %}
         {% else %}
