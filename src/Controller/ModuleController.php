@@ -40,41 +40,51 @@ class ModuleController extends AbstractController
     #[Route('/module/edit/{id}', name: 'edit_module')]
     public function new_edit(Module $module = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Instancie un nouveeau Module lors d'un ajout
-        if (!$module) {
-            $module = new Module();
+        // Vérifie qu'un utilisateur est connecté
+        if ($this->getUser()) {
+            // Instancie un nouveeau Module lors d'un ajout
+            if (!$module) {
+                $module = new Module();
+            }
+
+            // Instancie un formulaire de type module
+            $form = $this->createForm(ModuleType::class, $module);
+
+            $form->handleRequest($request);
+
+            // Traitement du formulaire s'il est soumis et valide
+            if ($form->isSubmitted() && $form->isValid()) {
+                $module = $form->getData();
+                // Prpare PDO
+                $entityManager->persist($module);
+                // Execute PDO
+                $entityManager->flush();
+
+                // Redirige vers la liste des modules
+                return $this->redirectToRoute('app_module');
+            }
+
+            return $this->render('module/new.html.twig', [
+                'formAddModule' => $form,
+                'edit' => $module->getId(),
+                'module' => $module
+            ]);
         }
 
-        // Instancie un formulaire de type module
-        $form = $this->createForm(ModuleType::class, $module);
-
-        $form->handleRequest($request);
-
-        // Traitement du formulaire s'il est soumis et valide
-        if ($form->isSubmitted() && $form->isValid()) {
-            $module = $form->getData();
-            // Prpare PDO
-            $entityManager->persist($module);
-            // Execute PDO
-            $entityManager->flush();
-
-            // Redirige vers la liste des modules
-            return $this->redirectToRoute('app_module');
-        }
-
-        return $this->render('module/new.html.twig', [
-            'formAddModule' => $form,
-            'edit' => $module->getId(),
-            'module' => $module
-        ]);
+        return $this->redirectToRoute(('app_login'));
     }
 
     #[Route('/module/delete/{id}', name: 'delete_module')]
     public function delete(Module $module, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($module);
-        $entityManager->flush();
+        // Vérifie qu'un utilisateur est connecté
+        if ($this->getUser()) {
+            $entityManager->remove($module);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('app_module');
+            return $this->redirectToRoute('app_module');
+        }
+
+        return $this->redirectToRoute(('app_login'));
     }
 }

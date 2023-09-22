@@ -28,41 +28,51 @@ class FormationController extends AbstractController
     #[Route('/formation/edit/{id}', name: 'edit_formation')]
     public function new_edit(Formation $formation = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Instancie une nouvelle formation lors d'un ajout
-        if (!$formation) {
-            $formation = new Formation();
+        // Vérifie qu'un utilisateur est connecté
+        if ($this->getUser()) {
+            // Instancie une nouvelle formation lors d'un ajout
+            if (!$formation) {
+                $formation = new Formation();
+            }
+
+            // Instancie un formulaire de type Formation
+            $form = $this->createForm(FormationType::class, $formation);
+
+            $form->handleRequest($request);
+
+            // Traitement du formulaire s'il est soumis et valide
+            if ($form->isSubmitted() && $form->isValid()) {
+                $formation = $form->getData();
+                // Prpare PDO
+                $entityManager->persist($formation);
+                // Execute PDO
+                $entityManager->flush();
+
+                // Redirige vers la liste des formations
+                return $this->redirectToRoute('app_formation');
+            }
+
+            return $this->render('formation/new.html.twig', [
+                'formAddFormation' => $form,
+                'edit' => $formation->getId(),
+                'formation' => $formation
+            ]);
         }
 
-        // Instancie un formulaire de type Formation
-        $form = $this->createForm(FormationType::class, $formation);
-
-        $form->handleRequest($request);
-
-        // Traitement du formulaire s'il est soumis et valide
-        if ($form->isSubmitted() && $form->isValid()) {
-            $formation = $form->getData();
-            // Prpare PDO
-            $entityManager->persist($formation);
-            // Execute PDO
-            $entityManager->flush();
-
-            // Redirige vers la liste des formations
-            return $this->redirectToRoute('app_formation');
-        }
-
-        return $this->render('formation/new.html.twig', [
-            'formAddFormation' => $form,
-            'edit' => $formation->getId(),
-            'formation' => $formation
-        ]);
+        return $this->redirectToRoute(('app_login'));
     }
 
     #[Route('/formation/delete/{id}', name: 'delete_formation')]
     public function delete(Formation $formation, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($formation);
-        $entityManager->flush();
+        // Vérifie qu'un utilisateur est connecté
+        if ($this->getUser()) {
+            $entityManager->remove($formation);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('app_formation');
+            return $this->redirectToRoute('app_formation');
+        }
+
+        return $this->redirectToRoute(('app_login'));
     }
 }

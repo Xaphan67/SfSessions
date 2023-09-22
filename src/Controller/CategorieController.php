@@ -16,41 +16,51 @@ class CategorieController extends AbstractController
     #[Route('/categorie/edit/{id}', name: 'edit_categorie')]
     public function new_edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Instancie une nouvelle Categorie lors d'un ajout
-        if (!$categorie) {
-            $categorie = new Categorie();
+        // Vérifie qu'un utilisateur est connecté
+        if ($this->getUser()) {
+            // Instancie une nouvelle Categorie lors d'un ajout
+            if (!$categorie) {
+                $categorie = new Categorie();
+            }
+
+            // Instancie un formulaire de type categorie
+            $form = $this->createForm(CategorieType::class, $categorie);
+
+            $form->handleRequest($request);
+
+            // Traitement du formulaire s'il est soumis et valide
+            if ($form->isSubmitted() && $form->isValid()) {
+                $categorie = $form->getData();
+                // Prpare PDO
+                $entityManager->persist($categorie);
+                // Execute PDO
+                $entityManager->flush();
+
+                // Redirige vers la liste des categories
+                return $this->redirectToRoute('app_module');
+            }
+
+            return $this->render('categorie/new.html.twig', [
+                'formAddCategorie' => $form,
+                'edit' => $categorie->getId(),
+                'categorie' => $categorie
+            ]);
         }
 
-        // Instancie un formulaire de type categorie
-        $form = $this->createForm(CategorieType::class, $categorie);
-
-        $form->handleRequest($request);
-
-        // Traitement du formulaire s'il est soumis et valide
-        if ($form->isSubmitted() && $form->isValid()) {
-            $categorie = $form->getData();
-            // Prpare PDO
-            $entityManager->persist($categorie);
-            // Execute PDO
-            $entityManager->flush();
-
-            // Redirige vers la liste des categories
-            return $this->redirectToRoute('app_module');
-        }
-
-        return $this->render('categorie/new.html.twig', [
-            'formAddCategorie' => $form,
-            'edit' => $categorie->getId(),
-            'categorie' => $categorie
-        ]);
+        return $this->redirectToRoute(('app_login'));
     }
 
     #[Route('/categorie/delete/{id}', name: 'delete_categorie')]
     public function delete(Categorie $categorie, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($categorie);
-        $entityManager->flush();
+        // Vérifie qu'un utilisateur est connecté
+        if ($this->getUser()) {
+            $entityManager->remove($categorie);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('app_module');
+            return $this->redirectToRoute(('app_module'));
+        }
+
+        return $this->redirectToRoute('app_login');
     }
 }

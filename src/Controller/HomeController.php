@@ -12,6 +12,7 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(SessionRepository $sessionRepository): Response
     {
+        // Vérifie qu'un utilisateur est connecté
         if ($this->getUser()) {
             // Récupère la liste des sessions en cours
             $sessionsEnCours = $sessionRepository->findSessionsEnCours();
@@ -28,6 +29,7 @@ class HomeController extends AbstractController
                 'sessionsPasses' => $sessionsPasses
             ]);
         }
+
         return $this->redirectToRoute('app_login');
     }
 }
