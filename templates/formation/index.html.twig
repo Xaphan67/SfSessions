@@ -20,7 +20,10 @@
         {% for formation in formations %}
         <tr>
             <td>{{ formation }}</td>
-            <td><a href="{{ path('edit_formation', {'id':formation.id}) }}">Editer cette formation</a></td>
+            <td>
+                <a href="{{ path('edit_formation', {'id':formation.id}) }}">Editer</a>
+                <a href="{{ path('delete_formation', {'id':formation.id}) }}">Supprimer</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
