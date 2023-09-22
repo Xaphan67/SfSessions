@@ -3,7 +3,7 @@
 {% block title %}Page d'accueil{% endblock %}
 
 {% block body %}
-<h1>Bienvenue !</h1>
+<h1>Bienvenue {{ app.user.nom }} !</h1>
 
 <h2>Sessions en cours</h2>
 {% if sessionsEnCours | length > 0 %}
