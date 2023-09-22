@@ -16,7 +16,6 @@ class FormationController extends AbstractController
     #[Route('/formations', name: 'app_formation')]
     public function index(FormationRepository $formationRepository): Response
     {
-
         // Récupère toutes les formations et les classe dans l'ordre alphabétique de leur nom
         $formations = $formationRepository->findBy([], ["nom" => "ASC"]);
 

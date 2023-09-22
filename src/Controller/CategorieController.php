@@ -12,16 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategorieController extends AbstractController
 {
-    #[Route('/categorie', name: 'app_categorie')]
-    public function index(): Response
-    {
-        return $this->render('categorie/index.html.twig', [
-            'controller_name' => 'CategorieController',
-        ]);
-    }
-
-    #[Route('/Categorie/new', name: 'new_categorie')]
-    #[Route('/Categorie/edit/{id}', name: 'edit_categorie')]
+    #[Route('/categorie/new', name: 'new_categorie')]
+    #[Route('/categorie/edit/{id}', name: 'edit_categorie')]
     public function new_edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // Instancie une nouvelle Categorie lors d'un ajout
