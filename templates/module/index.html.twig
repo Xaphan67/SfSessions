@@ -3,9 +3,25 @@
 {% block title %}Liste des modules{% endblock %}
 
 {% block body %}
-<a href="{{ path('new_categorie') }}">Ajouter un module</a>
 
 <h1>Liste des modules</h1>
+
+<h2>Catégories</h2>
+
+<a href="{{ path('new_categorie') }}">Ajouter une catégorie</a>
+
+{% if categories | length > 0 %}
+<ul>
+    {% for categorie in categories %}
+    <li>{{ categorie }} - <a href="{{ path('edit_categorie', {'id':categorie.id}) }}">Editer</a></li>
+    {% endfor %}
+    {% else %}
+    <li>Il n'y a aucune catégorie.</li>
+    {% endif %}
+</ul>
+<h2>Modules</h2>
+
+<a href="{{ path('new_module') }}">Ajouter un module</a>
 
 <p>Il y à {{ pagination.getTotalItemCount }} modules enregistrés :</p>
 <ul>

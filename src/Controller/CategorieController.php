@@ -24,7 +24,7 @@ class CategorieController extends AbstractController
     #[Route('/Categorie/edit/{id}', name: 'edit_categorie')]
     public function new_edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Instancie un nouveau Categorie lors d'un ajout
+        // Instancie une nouvelle Categorie lors d'un ajout
         if (!$categorie) {
             $categorie = new Categorie();
         }
@@ -43,7 +43,7 @@ class CategorieController extends AbstractController
             $entityManager->flush();
 
             // Redirige vers la liste des categories
-            return $this->redirectToRoute('app_modules');
+            return $this->redirectToRoute('app_module');
         }
 
         return $this->render('categorie/new.html.twig', [

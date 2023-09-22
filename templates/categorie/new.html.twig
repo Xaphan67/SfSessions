@@ -4,15 +4,8 @@
 
 {% block body %}
 
-<h1>{% if edit %}Editer la catégorie {{ module }}{% else %}Ajouter une catégorie{% endif %}</h1>
-{{ form_start(formAddCategorie) }}
-    {{ form_row(formAddCategorie.nom) }}
-    <h3>Modules</h3>
-    <ul>
-        {% for module in formAddCategorie.modules %}
-            <li>{{ form_row(module.nom) }}</li>
-        {% endfor %}
-    </ul>
-{{ form_end(formAddCategorie) }}
+<h1>{% if edit %}Editer la catégorie {{ categorie }}{% else %}Ajouter une catégorie{% endif %}</h1>
+
+{{ form(formAddCategorie) }}
 
 {% endblock %}

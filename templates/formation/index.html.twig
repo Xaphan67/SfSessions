@@ -4,9 +4,10 @@
 
 {% block body %}
 
+<h1>Liste des formations</h1>
+
 <a href="{{ path('new_formation') }}">Ajouter une formation</a>
 
-<h1>Liste des formations</h1>
 {% if formations | length > 0 %}
 <table>
     <thead>
@@ -25,7 +26,7 @@
     </tbody>
 </table>
 {% else %}
-    <p>Il n'y a aucune formation.</p>
+<p>Il n'y a aucune formation.</p>
 {% endif %}
 
 {% endblock %}

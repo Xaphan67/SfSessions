@@ -5,6 +5,7 @@
 {% block body %}
 
 <h1>{% if edit %}Editer la session {{ session }}{% else %}Ajouter une session{% endif %}</h1>
+
 {{ form(formAddSession) }}
 
 {% endblock %}

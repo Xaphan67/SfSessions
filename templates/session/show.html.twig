@@ -25,13 +25,11 @@
     {% else %}
     <li>Il n'y à aucun stagiaire inscrit à cette session.</li>
     {% endif %}
-
 </ul>
 
 <h2>Stagiaires non inscrits</h2>
 <ul>
-    {% if session.stagiaires | length < session.places %}
-        {% if stagiairesNonInscrits | length > 0 %}
+    {% if session.stagiaires | length < session.places %} {% if stagiairesNonInscrits | length> 0 %}
         {% for stagiaire in stagiairesNonInscrits %}
         <li>{{ stagiaire }} -
             <a href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">Inscrire</a>
@@ -40,11 +38,9 @@
         {% else %}
         <li>Tout les stagiaires sont inscrits à cette session.</li>
         {% endif %}
-    {% else %}
+        {% else %}
         <li>Cette session est complète.</li>
-    {% endif %}
-    
-
+        {% endif %}
 </ul>
 
 <h2>Programme</h2>
@@ -75,7 +71,6 @@
     {% else %}
     <li>Tout les modules existant ont étés programmés pour cette session.</li>
     {% endif %}
-
 </ul>
 
 {% endblock %}

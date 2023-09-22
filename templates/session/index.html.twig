@@ -4,9 +4,10 @@
 
 {% block body %}
 
+<h1>Liste des sessions</h1>
+
 <a href="{{ path('new_session') }}">Ajouter une session</a>
 
-<h1>Liste des sessions</h1>
 {% if sessions | length > 0 %}
 <table>
     <thead>
@@ -33,10 +34,11 @@
             <td>{{ session.dateFin | date("d/m/Y") }}</td>
             <td><a href="{{ path('edit_session', {'id':session.id}) }}">Editer</a></td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </tbody>
 </table>
 {% else %}
 <p>Il n'y à aucune session en base de donnée.</p>
 {% endif %}
+
 {% endblock %}

@@ -4,9 +4,10 @@
 
 {% block body %}
 
+<h1>Liste des stagiaires</h1>
+
 <a href="{{ path('new_stagiaire') }}">Ajouter un stagiaire</a>
 
-<h1>Liste des stagiaires</h1>
 {% if stagiaires | length > 0 %}
 <table>
     <thead>
@@ -31,10 +32,11 @@
             <td>{{ stagiaire.telephone }}</td>
             <td><a href="{{ path('edit_stagiaire', {'id':stagiaire.id}) }}">Editer ce stagiaire</a></td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </tbody>
 </table>
 {% else %}
-    <p>Il n'y a aucun stagiaire enregisté</p>
+<p>Il n'y a aucun stagiaire enregisté</p>
 {% endif %}
+
 {% endblock %}
