@@ -11,28 +11,56 @@
 <a href="{{ path('new_categorie') }}">Ajouter une catégorie</a>
 
 {% if categories | length > 0 %}
-<ul>
-    {% for categorie in categories %}
-    <li>{{ categorie }} - <a href="{{ path('edit_categorie', {'id':categorie.id}) }}">Editer</a> - <a
-            href="{{ path('delete_categorie', {'id':categorie.id}) }}">Supprimer</a></li>
-    {% endfor %}
-    {% else %}
-    <li>Il n'y a aucune catégorie.</li>
-    {% endif %}
-</ul>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categorie in categories %}
+        <tr>
+            <td>{{ categorie }}</td>
+            <td>
+                <a href="{{ path('edit_categorie', {'id':categorie.id}) }}">Editer</a>
+                <a href="{{ path('delete_categorie', {'id':categorie.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Il n'y a aucune catégorie.</p>
+{% endif %}
+
+
 
 <h2>Modules</h2>
 
 <a href="{{ path('new_module') }}">Ajouter un module</a>
 
 <p>Il y à {{ pagination.getTotalItemCount }} modules enregistrés :</p>
-<ul>
-    {% for module in pagination %}
-    <li>{{ module }} - {{ module.categorie }} - <a href="{{ path('edit_module', {'id':module.id}) }}">Editer</a> - <a
-            href="{{ path('delete_module', {'id':module.id}) }}">Supprimer</a></li>
-    {% endfor %}
-</ul>
-
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for module in pagination %}
+        <tr>
+            <td>{{ module }}</td>
+            <td>{{ module.categorie }}</td>
+            <td><a href="{{ path('edit_module', {'id':module.id}) }}">Editer</a>
+                <a href="{{ path('delete_module', {'id':module.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 <div>
     {{ knp_pagination_render(pagination) }}
 </div>
