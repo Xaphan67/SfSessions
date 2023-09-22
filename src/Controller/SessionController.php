@@ -38,6 +38,7 @@ class SessionController extends AbstractController
     {
         // Vérifie qu'un utilisateur est connecté
         if ($this->getUser()) {
+
             // Instancie une nouvelle session lors d'un ajout
             if (!$session) {
                 $session = new Session();
@@ -48,6 +49,11 @@ class SessionController extends AbstractController
 
             $form->handleRequest($request);
 
+            // Enregistre l'url d'entrée dans une variable en session en cas de modification mais que le formulaire n'est pas soumis
+            if ($session && !$form->isSubmitted()) {
+                $request->getSession()->set('urlFrom', $request->headers->get('referer'));
+            }
+
             // Traitement du formulaire s'il est soumis et valide
             if ($form->isSubmitted() && $form->isValid()) {
                 $session = $form->getData();
@@ -56,8 +62,14 @@ class SessionController extends AbstractController
                 // Execute PDO
                 $entityManager->flush();
 
-                // Redirige vers la liste des sessions
-                return $this->redirectToRoute('app_session');
+                // Place l'url stockée en session dans une variable $url
+                $url = $request->getSession()->get('urlFrom');
+
+                // Retire la variable stockée en session
+                $request->getSession()->remove('urlFrom');
+
+                // Redirige vers l'url stockée dans $url
+                return $this->redirect($url);
             }
 
             return $this->render('session/new.html.twig', [
