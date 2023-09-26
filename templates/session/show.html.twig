@@ -7,7 +7,7 @@
 <h1>{{ session }}</h1>
 
 <ul>
-    <li>Formateur référent : {{ session.formateur }}</li>
+    <li>Formateur référent : <a href="{{ path('show_formateur', {'id':session.formateur.id}) }}">{{ session.formateur }}</a></li>
     <li>Date de début : {{ session.dateDebut | date("d/m/Y") }}</li>
     <li>Date de fin : {{ session.dateFin | date("d/m/Y") }}</li>
     <li>Nombre de places : {{ session.places }}</li>
