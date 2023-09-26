@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formateur : {{ formateur }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ formateur }}</h1>
+<ul>
+    <li>Sexe : {{ formateur.sexe }}</li>
+    <li>Date de naissance : {{ formateur.dateNaissance | date("d/m/Y") }}</li>
+    <li>Ville : {{ formateur.ville }}</li>
+    <li>Couriel : {{ formateur.email }}</li>
+    <li>Téléphone : {{ formateur.telephone }}</li>
+</ul>
+
+{% endblock %}

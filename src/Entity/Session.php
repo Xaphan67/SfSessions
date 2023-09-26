@@ -38,6 +38,10 @@ class Session
     #[ORM\JoinColumn(nullable: false)]
     private ?Formation $formation = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sessions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Formateur $formateur = null;
+
     public function __construct()
     {
         $this->programmes = new ArrayCollection();
@@ -167,5 +171,17 @@ class Session
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getFormateur(): ?Formateur
+    {
+        return $this->formateur;
+    }
+
+    public function setFormateur(?Formateur $formateur): static
+    {
+        $this->formateur = $formateur;
+
+        return $this;
     }
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des formateurs{% endblock %}
+
+{% block body %}
+
+<h1>Liste des formateurs</h1>
+
+<a href="{{ path('new_formateur') }}">Ajouter un formateur</a>
+
+{% if formateurs | length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th>Nom et Prénom</th>
+            <th>Sexe</th>
+            <th>Date de naissance</th>
+            <th>Ville</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for formateur in formateurs %}
+        <tr>
+            <td><a href="{{ path('show_formateur', {'id':formateur.id}) }}">{{ formateur}}</a></td>
+            <td>{{ formateur.sexe }}</td>
+            <td>{{ formateur.dateNaissance | date("d/m/Y") }}</td>
+            <td>{{ formateur.ville }}</td>
+            <td>{{ formateur.email }}</td>
+            <td>{{ formateur.telephone }}</td>
+            <td>
+                <a href="{{ path('edit_formateur', {'id':formateur.id}) }}">Editer</a>
+                <a href="{{ path('delete_formateur', {'id':formateur.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Il n'y a aucun formateur.</p>
+{% endif %}
+
+{% endblock %}
