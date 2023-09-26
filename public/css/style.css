@@ -14,14 +14,15 @@
     --navSelected: #8E5EFF;
     --liens: #AF8CFF;
     --liensNav: #FFFFFF;
-    --mainBg : #F6F5FA;
-    --sectionBg : #FFFFFF;
+    --mainBg: #F6F5FA;
+    --sectionBg: #FFFFFF;
     --textColor: #767092;
     --tableColor: #FAF8FD;
     --tableTextHeader: #636777;
     --tableHeaderBorder: #F4F2FA;
     --tableCellBorder: #FAF8FD;
     --btnColor: #FF9067;
+    --btnHover: #b65836;
     --btnContent: #FFFFFF;
 }
 
@@ -36,26 +37,39 @@ p {
 }
 
 .btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     width: 40px;
     height: 40px;
+    text-align: center;
     background-color: var(--btnColor);
+    color: var(--btnContent);
     border-radius: 20px;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: var(--btnHover);
+}
+
+.btn-center {
+    margin: auto;
 }
 
 .btn svg {
     fill: var(--btnContent);
-    border: none;
+    width: 20px;
+    height: 20px;
 }
 
 /* Hiéarchie */
 
 h1 {
-    color : var(--textColor);
+    color: var(--textColor);
     font-size: 40px;
     padding-bottom: 20px;
+    max-height: 65px;
 }
 
 h2 {
@@ -114,6 +128,7 @@ nav ul li {
     justify-content: center;
     text-align: center;
     color: var(--liensNav);
+    transition: all 0.2s ease-in-out;
 }
 
 nav ul li a {
