@@ -1,0 +1,234 @@
+/* Basics */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+:root {
+    --navColor: #7033FF;
+    --navSelected: #8E5EFF;
+    --liens: #AF8CFF;
+    --liensNav: #FFFFFF;
+    --mainBg : #F6F5FA;
+    --sectionBg : #FFFFFF;
+    --textColor: #767092;
+    --tableColor: #FAF8FD;
+    --tableTextHeader: #636777;
+    --tableHeaderBorder: #F4F2FA;
+    --tableCellBorder: #FAF8FD;
+    --btnColor: #FF9067;
+    --btnContent: #FFFFFF;
+}
+
+a {
+    color: var(--liens);
+    text-decoration: none;
+}
+
+p {
+    text-align: center;
+    color: var(--textColor);
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--btnColor);
+    border-radius: 20px;
+}
+
+.btn svg {
+    fill: var(--btnContent);
+    border: none;
+}
+
+/* Hiéarchie */
+
+h1 {
+    color : var(--textColor);
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 15px 0px;
+    color: var(--textColor);
+}
+
+/* Utilisateur */
+
+.user {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--mainBg);
+    border-bottom-left-radius: 50px;
+    width: 300px;
+    height: 130px;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    color: var(--textColor);
+}
+
+.user .avatar {
+    border-radius: 100px;
+    border: 4px solid var(--textColor);
+    width: 75px;
+    padding-top: 10px;
+}
+
+/* Navigation */
+
+nav ul {
+    width: 200px;
+    margin-top: 80px;
+    padding-top: 100px;
+    border-top-right-radius: 85px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navColor);
+    height: calc(100vh - 80px);
+}
+
+nav ul li {
+    height: 129px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--liensNav);
+}
+
+nav ul li a {
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul li svg {
+    height: 60px;
+    fill: var(--liensNav);
+}
+
+nav ul li:hover,
+.selected {
+    background-color: var(--navSelected);
+}
+
+/* Tableaux */
+
+table {
+    width: 100%;
+    border-spacing: 1, 0;
+}
+
+thead {
+    background-color: var(--tableColor);
+    color: var(--tableTextHeader);
+    font-size: 16px;
+}
+
+tr {
+    height: 50px;
+}
+
+th:first-child {
+    border-radius: 25px 0px 0px 25px;
+    border-right: 1px solid var(--tableHeaderBorder);
+}
+
+th:last-child {
+    border-radius: 0px 25px 25px 0px;
+    border-left: 1px solid var(--tableHeaderBorder);
+}
+
+th:not(:first-child):not(:last-child) {
+    border-left: 1px solid var(--tableHeaderBorder);
+    border-right: 1px solid var(--tableHeaderBorder);
+}
+
+td {
+    font-size: 14px;
+    color: var(--textColor);
+    padding-inline: 10px;
+}
+
+td:first-child {
+    border-radius: 25px 0px 0px 25px;
+    border: solid var(--tableCellBorder);
+    border-width: 3px 1px 3px 3px;
+}
+
+td:last-child {
+    border-radius: 0px 25px 25px 0px;
+    border: solid var(--tableCellBorder);
+    border-width: 3px 3px 3px 1px;
+}
+
+td:not(:first-child):not(:last-child) {
+    border: solid var(--tableCellBorder);
+    border-width: 3px 1px 3px 1px;
+}
+
+.width25 {
+    width: 25%;
+}
+
+.width20 {
+    width: 20%;
+}
+
+.width15 {
+    width: 15%;
+}
+
+.width10 {
+    width: 10%;
+}
+
+/* Classes */
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.main-content {
+    width: 100%;
+    margin: 80px 50px 0px 50px;
+}
+
+.main-article {
+    background-color: var(--mainBg);
+    border-radius: 50px 50px 0px 0px;
+    height: calc(100vh - 145px);
+}
+
+.section {
+    background-color: var(--sectionBg);
+    border-radius: 50px;
+    padding: 20px;
+    margin: 0px 25px 0px 25px;
+}
+
+.center {
+    text-align: center;
+}
