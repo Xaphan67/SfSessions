@@ -24,6 +24,7 @@
     --btnColor: #FF9067;
     --btnHover: #b65836;
     --btnContent: #FFFFFF;
+    --formBorder: #E0DDE9;
 }
 
 a {
@@ -55,6 +56,10 @@ p {
 
 .btn-center {
     margin: auto;
+}
+
+.btn-form {
+    border: none;
 }
 
 .btn-large {
@@ -127,6 +132,7 @@ li {
 h1 {
     color: var(--textColor);
     font-size: 40px;
+    font-weight: initial;
     padding-bottom: 20px;
     max-height: 65px;
 }
@@ -137,6 +143,7 @@ h2 {
     align-items: center;
     text-transform: uppercase;
     font-size: 14px;
+    font-weight: initial;
     padding: 15px 0px;
     color: var(--textColor);
 }
@@ -224,6 +231,7 @@ tr {
 th {
     padding-inline: 10px;
     text-align: left;
+    font-weight: initial;
 }
 
 th:first-child {
@@ -283,6 +291,29 @@ td:not(:first-child):not(:last-child) {
 .width5 {
     width: 5%;
 }
+
+/* Formulaires */
+
+.form-duree {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.input-duree {
+    width: 100%;
+}
+
+input {
+    border: 1px solid var(--formBorder);
+    color: var(--textColor);
+    height: 30px;
+    border-radius: 5px;
+    padding-inline:5px;
+}
+
 /* Classes */
 
 .main-container {
@@ -303,11 +334,23 @@ td:not(:first-child):not(:last-child) {
     padding-bottom: 25px;
 }
 
+.sections {
+    display: flex;
+}
+
 .section {
     background-color: var(--sectionBg);
     border-radius: 50px;
     padding: 20px;
     margin: 0px 25px 0px 25px;
+}
+
+.section-col-40 {
+    width:40%;
+}
+
+.section-col-60 {
+    width:60%;
 }
 
 .center {
@@ -318,4 +361,8 @@ td:not(:first-child):not(:last-child) {
     display: flex;
     gap: 10px;
     justify-content: center;
+}
+
+.formateur {
+    padding-bottom: 20px;
 }
