@@ -2,10 +2,22 @@
 
 {% block title %}Ajouter une catégorie{% endblock %}
 
+{% block mainTitle %}<h1>{% if edit %}Editer la catégorie {{ categorie }}{% else %}Ajouter une catégorie{% endif %}</h1>{% endblock %}
+
 {% block body %}
 
-<h1>{% if edit %}Editer la catégorie {{ categorie }}{% else %}Ajouter une catégorie{% endif %}</h1>
-
-{{ form(formAddCategorie) }}
+<h2>informations de la catégorie</h2>
+<div class="session">
+    {{ form_start(formAddCategorie) }}
+        <div class="form-row">
+            {{ form_row(formAddCategorie.nom) }}
+        </div>
+        {% if edit %}
+        {{ form_row(formAddCategorie.submit, { 'label': 'Editer'}) }}
+        {% else %}
+        {{ form_row(formAddCategorie.submit, { 'label': 'Ajouter'}) }}
+        {% endif %}
+    {{ form_end(formAddCategorie) }}
+</div>
 
 {% endblock %}

@@ -2,10 +2,25 @@
 
 {% block title %}Ajouter un module{% endblock %}
 
+{% block mainTitle %}<h1>{% if edit %}Editer le module {{ module }}{% else %}Ajouter un module{% endif %}</h1>{% endblock %}
+
 {% block body %}
 
-<h1>{% if edit %}Editer le module {{ module }}{% else %}Ajouter un module{% endif %}</h1>
-
-{{ form(formAddModule) }}
+<h2>informations du module</h2>
+<div class="session">
+    {{ form_start(formAddModule) }}
+        <div class="form-row">
+            {{ form_row(formAddModule.nom) }}
+        </div>
+        <div class="form-row">
+            {{ form_row(formAddModule.categorie) }}
+        </div>
+        {% if edit %}
+        {{ form_row(formAddModule.submit, { 'label': 'Editer'}) }}
+        {% else %}
+        {{ form_row(formAddModule.submit, { 'label': 'Ajouter'}) }}
+        {% endif %}
+    {{ form_end(formAddModule) }}
+</div>
 
 {% endblock %}

@@ -16,11 +16,25 @@ class ModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('categorie', EntityType::class, [
-                'class' => Categorie::class
+            ->add('nom', TextType::class, [
+                'label' => 'Nom *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
-            ->add('submit', SubmitType::class);
+            ->add('categorie', EntityType::class, [
+                'label' => 'Catégorie *',
+                'class' => Categorie::class,
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-form'
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
