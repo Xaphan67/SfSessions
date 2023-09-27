@@ -70,6 +70,12 @@ p {
     height: 20px;
 }
 
+li {
+    list-style-type: none;
+    color: var(--textColor);
+    line-height: 20px;
+}
+
 /* Pagination */
 
 .pagination {
