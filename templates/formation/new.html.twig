@@ -2,10 +2,23 @@
 
 {% block title %}Ajouter une formation{% endblock %}
 
+{% block mainTitle %}<h1>{% if edit %}Editer la formation {{ formation }}{% else %}Ajouter une formation{% endif %}</h1>{% endblock %}
+
 {% block body %}
 
-<h1>{% if edit %}Editer la formation {{ formation }}{% else %}Ajouter une formation{% endif %}</h1>
+<h2>Informations sur la formation</h2>
+<div class="section">
+    {{ form_start(formAddFormation) }}
+        <div class="form-row">
+            {{ form_row(formAddFormation.nom) }}
+        </div>
+        {% if edit %}
+        {{ form_row(formAddFormation.submit, { 'label': 'Editer'}) }}
+        {% else %}
+        {{ form_row(formAddFormation.submit, { 'label': 'Ajouter'}) }}
+        {% endif %}
+    {{ form_end(formAddFormation) }}
+</div>
 
-{{ form(formAddFormation) }}
 
 {% endblock %}

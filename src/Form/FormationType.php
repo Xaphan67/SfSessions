@@ -22,7 +22,7 @@ class FormationType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-large btn-form'
+                    'class' => 'btn btn-form'
                 ]
             ])
         ;

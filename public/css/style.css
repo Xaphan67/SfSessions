@@ -61,6 +61,9 @@ p {
 
 .btn-form {
     border: none;
+    width: fit-content;
+    padding-inline: 20px;
+    margin-inline: auto;
 }
 
 .btn-large {
