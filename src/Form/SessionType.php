@@ -12,27 +12,59 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SessionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('places', TextType::class)
+            ->add('nom', TextType::class, [
+                'label' => 'Nom *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('places', IntegerType::class, [
+                'label' => 'Places *',
+                'attr' => [
+                    'class' => 'form-input',
+                    'min' => 1
+                ]
+            ])
             ->add('dateDebut', DateType::class, [
-                'widget' => 'single_text'
+                'label' => 'Date de début *',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
             ->add('dateFin', DateType::class, [
-                'widget' => 'single_text'
+                'label' => 'Date de fin *',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
             ->add('formation', EntityType::class, [
-                'class' => Formation::class
+                'label' => 'Formation *',
+                'class' => Formation::class,
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
             ->add('formateur', EntityType::class, [
-                'class' => Formateur::class
+                'label' => 'Formateur *',
+                'class' => Formateur::class,
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-form'
+                ]
+            ])
         ;
     }
 

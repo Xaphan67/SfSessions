@@ -2,10 +2,43 @@
 
 {% block title %}Ajouter une session{% endblock %}
 
+{% block mainTitle %}<h1>{% if edit %}Editer la session {{ session }}{% else %}Ajouter une session{% endif %}</h1>{% endblock %}
+
 {% block body %}
 
-<h1>{% if edit %}Editer la session {{ session }}{% else %}Ajouter une session{% endif %}</h1>
-
-{{ form(formAddSession) }}
+<h2>Informations de la session</h2>
+<div class="section">
+    {{ form_start(formAddSession) }}
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddSession.nom) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddSession.places) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddSession.dateDebut) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddSession.dateFin) }}
+            </div>     
+        </div>
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddSession.formation) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddSession.formateur) }}
+            </div>
+        </div>
+        {% if edit %}
+        {{ form_row(formAddSession.submit, { 'label': 'Editer'}) }}
+        {% else %}
+        {{ form_row(formAddSession.submit, { 'label': 'Ajouter'}) }}
+        {% endif %}
+    {{ form_end(formAddSession) }}
+</div>
 
 {% endblock %}
