@@ -70,6 +70,52 @@ p {
     height: 20px;
 }
 
+/* Pagination */
+
+.pagination {
+    display: flex;
+    margin-top: 20px;
+    padding: 5px;
+    gap: 15px;
+    margin-inline: auto;
+    width: fit-content;
+    border: 3px solid var(--tableCellBorder);
+    border-radius: 25px;
+}
+
+.first,
+.previous,
+.next,
+.last,
+.page {
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: var(--btnColor);
+    color: var(--btnContent);
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.current {
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: var(--mainBg);
+    color: var(--textColor);
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination a {
+    color: var(--liensNav);
+    text-decoration: none;
+}
+
 /* Hiéarchie */
 
 h1 {
@@ -124,7 +170,6 @@ nav ul {
     display: flex;
     flex-direction: column;
     background-color: var(--navColor);
-    height: calc(100vh - 80px);
 }
 
 nav ul li {
@@ -249,7 +294,7 @@ td:not(:first-child):not(:last-child) {
 .main-article {
     background-color: var(--mainBg);
     border-radius: 50px 50px 0px 0px;
-    height: calc(100vh - 145px);
+    padding-bottom: 25px;
 }
 
 .section {
