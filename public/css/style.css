@@ -48,6 +48,7 @@ p {
     cursor: pointer;
     padding: 10px;
     transition: all 0.2s ease-in-out;
+    font-size: 16px;
 }
 
 .btn:hover {
@@ -294,6 +295,10 @@ td:not(:first-child):not(:last-child) {
 
 /* Formulaires */
 
+form {
+    color: var(--textColor);
+}
+
 .form-duree {
     display: flex;
     gap: 10px;
@@ -313,6 +318,30 @@ input {
     border-radius: 5px;
     padding-inline:5px;
 }
+
+.form-row {
+    display: flex;
+    padding-bottom: 20px;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.form-col {
+    display: flex;
+    width: 50%;
+}
+
+.form-row > div,
+.form-col > div {
+    width: 100%;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+}
+
 
 /* Classes */
 

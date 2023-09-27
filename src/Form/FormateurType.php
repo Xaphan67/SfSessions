@@ -16,16 +16,55 @@ class FormateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom', TextType::class)
-            ->add('nom', TextType::class)
-            ->add('sexe', TextType::class)
-            ->add('dateNaissance', DateType::class, [
-                'widget' => 'single_text'
+            ->add('prenom', TextType::class, [
+                'label' => 'Prénom *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
             ])
-            ->add('ville', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('telephone', TextType::class)
-            ->add('submit', SubmitType::class)
+            ->add('nom', TextType::class, [
+                'label' => 'Nom *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('sexe', TextType::class, [
+                'label' => 'Sexe *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('dateNaissance', DateType::class, [
+                'label' => 'Date de naissance *',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('ville', TextType::class, [
+                'label' => 'Ville *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('telephone', TextType::class, [
+                'label' => 'Téléphone *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Ajouter',
+                'attr' => [
+                    'class' => 'btn btn-large btn-form'
+                ]
+            ])
         ;
     }
 

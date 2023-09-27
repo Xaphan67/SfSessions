@@ -2,10 +2,44 @@
 
 {% block title %}Ajouter un formateur{% endblock %}
 
+{% block mainTitle %}<h1>{% if edit %}Editer le formateur {{ formateur }}{% else %}Ajouter un formateur{% endif %}</h1>{% endblock %}
+
 {% block body %}
 
-<h1>{% if edit %}Editer le formateur {{ formateur }}{% else %}Ajouter un formateur{% endif %}</h1>
-
-{{ form(formAddFormateur) }}
+<h2>Informations du formateur</h2>
+<div class="section">
+    {{ form_start(formAddFormateur) }}
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddFormateur.nom) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddFormateur.prenom) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddFormateur.sexe) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddFormateur.dateNaissance) }}
+            </div>     
+        </div>
+        <div class="form-row">
+            {{ form_row(formAddFormateur.ville) }}
+        </div>
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddFormateur.telephone) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddFormateur.email) }}
+            </div>
+        </div>
+        <div class="form-row">
+            {{ form_row(formAddFormateur.submit) }}
+        </div>
+    {{ form_end(formAddFormateur) }}
+</div>
 
 {% endblock %}
