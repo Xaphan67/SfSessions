@@ -57,6 +57,13 @@ p {
     margin: auto;
 }
 
+.btn-large {
+    width: fit-content;
+    padding-inline: 20px;
+    margin-inline: auto;
+    margin-bottom: 20px;
+}
+
 .btn svg {
     fill: var(--btnContent);
     width: 20px;
@@ -163,6 +170,11 @@ tr {
     height: 50px;
 }
 
+th {
+    padding-inline: 10px;
+    text-align: left;
+}
+
 th:first-child {
     border-radius: 25px 0px 0px 25px;
     border-right: 1px solid var(--tableHeaderBorder);
@@ -217,6 +229,9 @@ td:not(:first-child):not(:last-child) {
     width: 10%;
 }
 
+.width5 {
+    width: 5%;
+}
 /* Classes */
 
 .main-container {
@@ -246,4 +261,10 @@ td:not(:first-child):not(:last-child) {
 
 .center {
     text-align: center;
+}
+
+.actions-multiple {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
