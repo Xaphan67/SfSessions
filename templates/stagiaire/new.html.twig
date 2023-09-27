@@ -2,10 +2,44 @@
 
 {% block title %}Ajouter un stagiaire{% endblock %}
 
+{% block mainTitle %}<h1>{% if edit %}Editer le stagiaire {{ stagiaire }}{% else %}Ajouter un stagiaire{% endif %}</h1>{% endblock %}
+
 {% block body %}
 
-<h1>{% if edit %}Editer le stagiaire {{ stagiaire }}{% else %}Ajouter un stagiaire{% endif %}</h1>
-
-{{ form(formAddStagiaire) }}
+<h2>Informations du stagiaire</h2>
+<div class="section">
+    {{ form_start(formAddStagiaire) }}
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddStagiaire.nom) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddStagiaire.prenom) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddStagiaire.sexe) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddStagiaire.dateNaissance) }}
+            </div>     
+        </div>
+        <div class="form-row">
+            {{ form_row(formAddStagiaire.ville) }}
+        </div>
+        <div class="form-row">
+            <div class="form-col">
+                {{ form_row(formAddStagiaire.telephone) }}
+            </div>
+            <div class="form-col">
+                {{ form_row(formAddStagiaire.email) }}
+            </div>
+        </div>
+        <div class="form-row">
+            {{ form_row(formAddStagiaire.submit) }}
+        </div>
+    {{ form_end(formAddStagiaire) }}
+</div>
 
 {% endblock %}
