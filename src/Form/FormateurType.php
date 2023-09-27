@@ -60,7 +60,6 @@ class FormateurType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
                 'attr' => [
                     'class' => 'btn btn-large btn-form'
                 ]

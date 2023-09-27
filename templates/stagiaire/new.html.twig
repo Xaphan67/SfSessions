@@ -37,7 +37,11 @@
             </div>
         </div>
         <div class="form-row">
-            {{ form_row(formAddStagiaire.submit) }}
+            {% if edit %}
+            {{ form_row(formAddStagiaire.submit, { 'label': 'Editer'}) }}
+            {% else %}
+            {{ form_row(formAddStagiaire.submit, { 'label': 'Ajouter'}) }}
+            {% endif %}
         </div>
     {{ form_end(formAddStagiaire) }}
 </div>

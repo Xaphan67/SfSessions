@@ -14,8 +14,17 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('submit', SubmitType::class)
+            ->add('nom', TextType::class, [
+                'label' => 'Nom *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-large btn-form'
+                ]
+            ])
         ;
     }
 
