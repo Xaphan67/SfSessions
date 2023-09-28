@@ -50,6 +50,15 @@ class SessionController extends AbstractController
 
             $form->handleRequest($request);
 
+            // Vérifie que le nombre de places dans la session est supérieur au nombre de stagiaires inscrits
+            if ($form->isSubmitted() && $form->isValid()) {
+                if ($session->getPlaces() - count($session->getStagiaires()) < 0) {
+
+                    // Redirige vers le formulaire
+                    return $this->redirectToRoute('edit_session', ['id' => $session->getId()]);
+                }
+            }
+
             // Enregistre l'url d'entrée dans une variable en session en cas de modification mais que le formulaire n'est pas soumis
             if ($session && !$form->isSubmitted()) {
                 $request->getSession()->set('urlFrom', $request->headers->get('referer'));
