@@ -38,9 +38,6 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-checkbox'
                 ],
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
