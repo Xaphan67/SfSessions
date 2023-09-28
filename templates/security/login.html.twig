@@ -2,27 +2,35 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block mainTitle %}<h1>Connexion</h1>{% endblock %}
+
 {% block body %}
-<form method="post">
-    {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
-    <h1>Veuillez vous connecter</h1>
+<h2>Formulaire de connexion</h2>
+<div class="section">
+    <form method="post">
+        {% if error %}
+        <p class="msg-error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+        {% endif %}
+        
+        <p>Veuillez vous connecter pour accéder à l'application<br>
+        Pas de compte ? <a href="{{ path('app_register') }}">S'inscrire</a></p>
+    
+        <div class="form-row-small">
+            <label for="inputEmail">Email *</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-input"
+                autocomplete="email" required autofocus>    
+        </div>
+        <div class="form-row-small">
+            <label for="inputPassword">Mot de passe *</label>
+            <input type="password" name="password" id="inputPassword" class="form-input" autocomplete="current-password"
+                required>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <button class="btn btn-form" type="submit">
+            Connexion
+        </button>
+    </form>
+</div>
 
-    <p> Pas de compte ? <a href="{{ path('app_register') }}">S'inscrire</a></p>
-
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-        autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password"
-        required>
-
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-    <button tyype="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}

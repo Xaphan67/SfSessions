@@ -2,27 +2,31 @@
 
 {% block title %}Inscription{% endblock %}
 
+{% block mainTitle %}<h1>Inscription</h1>{% endblock %}
+
 {% block body %}
 {% for flash_error in app.flashes('verify_email_error') %}
 <div role="alert">{{ flash_error }}</div>
 {% endfor %}
 
-<h1>Inscription</h1>
+<h2>Formulaire d'inscription</h2>
+<div class="section">
+    {{ form_errors(registrationForm) }}
 
-{{ form_errors(registrationForm) }}
+    {{ form_start(registrationForm) }}
+    <div class="form-row">
+        {{ form_row(registrationForm.nom) }}
+    </div>
+    <div class="form-row">
+        {{ form_row(registrationForm.email) }}
+    </div>
+    <div class="form-row">
+        {{ form_row(registrationForm.plainPassword) }}
+    </div>
+    <div class="form-row checkmark">
+        {{ form_row(registrationForm.agreeTerms) }}
+    </div>   
+    {{ form_end(registrationForm) }}
+</div>
 
-{{ form_start(registrationForm) }}
-{{ form_row(registrationForm.nom, {
-label: 'Nom : *'
-}) }}
-{{ form_row(registrationForm.email, {
-label: 'Email : *'
-}) }}
-{{ form_row(registrationForm.plainPassword) }}
-{{ form_row(registrationForm.agreeTerms, {
-label: "J'accepte les termes d'utilisation *"
-}) }}
-
-<button type="submit">S'inscrire</button>
-{{ form_end(registrationForm) }}
 {% endblock %}

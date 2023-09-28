@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -20,9 +21,26 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('nom', TextType::class, [
+                'label' => 'Nom *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email *',
+                'attr' => [
+                    'class' => 'form-input'
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => "J'accepte les termes d'utilisation",
+                'attr' => [
+                    'class' => 'form-checkbox'
+                ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -41,14 +59,20 @@ class RegistrationFormType extends AbstractType
                 ],
                 'required' => true,
                 'first_options' => [
-                    'label' => 'Mot de passe *'
+                    'label' => 'Mot de passe *',
+                    'attr' => [
+                        'class' => 'form-input form-input-margin'
+                    ]
                 ],
                 'second_options' => [
-                    'label' => 'Répéter le mot de passe *'
+                    'label' => 'Répéter le mot de passe *',
+                    'attr' => [
+                        'class' => 'form-input'
+                    ]
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
@@ -57,7 +81,13 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ]);
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-form'
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
