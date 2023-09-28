@@ -4,6 +4,28 @@
 
 {% block mainTitle %}<h1>{{ formateur }}</h1>{% endblock %}
 
+{% block javascripts %}
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar')
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth', // Vue par défaut
+        locale: 'fr', // Langue
+        timeZone: 'Europe/Paris', // Fuseau horraire
+        headerToolbar: { // Eléments sur la barre en haut du calendrier
+            start: 'prev,next today',
+            center: 'title',
+            end: 'dayGridMonth,timeGridWeek'
+        }
+    })
+    calendar.render()
+})
+
+</script>
+{% endblock %}
+
 {% block body %}
 
 <h2>Civilité</h2>
@@ -17,6 +39,11 @@
         <li>Couriel : {{ formateur.email }}</li>
         <li>Téléphone : {{ formateur.telephone }}</li>
     </ul>
+</div>
+
+<h2>Planning</h2>
+<div class="section">
+    <div id="calendar"></div>
 </div>
 
 
