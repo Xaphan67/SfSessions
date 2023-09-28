@@ -81,6 +81,10 @@ p {
     height: 20px;
 }
 
+.btn-no-border {
+    border: none;
+}
+
 li {
     list-style-type: none;
     color: var(--textColor);
@@ -326,7 +330,7 @@ select {
     color: var(--textColor);
     height: 30px;
     border-radius: 5px;
-    padding-inline:5px;
+    padding-inline: 5px;
 }
 
 input[type=checkbox] {
@@ -358,8 +362,8 @@ input[type=checkbox] {
     width: 50%;
 }
 
-.form-row > div,
-.form-col > div {
+.form-row>div,
+.form-col>div {
     width: 100%;
 }
 
@@ -373,10 +377,10 @@ input[type=checkbox] {
 }
 
 .form-checkbox {
-    margin-left : 10px;
+    margin-left: 10px;
 }
 
-.checkmark > div {
+.checkmark>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -418,11 +422,11 @@ input[type=checkbox] {
 }
 
 .section-col-40 {
-    width:40%;
+    width: 40%;
 }
 
 .section-col-60 {
-    width:60%;
+    width: 60%;
 }
 
 .center {
