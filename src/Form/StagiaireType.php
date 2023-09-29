@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class StagiaireType extends AbstractType
@@ -30,8 +31,13 @@ class StagiaireType extends AbstractType
                     'class' => 'form-input'
                 ]
             ])
-            ->add('sexe', TextType::class, [
+            ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe *',
+                'placeholder' => 'Veuillez choisir...',
+                'choices'  => [
+                    'Homme' => "M",
+                    'Femme' => "F",
+                ],
                 'attr' => [
                     'class' => 'form-input'
                 ]
@@ -66,8 +72,7 @@ class StagiaireType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-form'
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
