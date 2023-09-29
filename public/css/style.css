@@ -185,14 +185,19 @@ h2 {
 
 /* Navigation */
 
+nav {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
 nav ul {
     width: 200px;
-    margin-top: 80px;
     padding-top: 100px;
     border-top-right-radius: 85px;
     display: flex;
     flex-direction: column;
     background-color: var(--navColor);
+    min-height: 100%;
 }
 
 nav ul li {
@@ -397,6 +402,7 @@ input[type=checkbox] {
     flex-direction: row;
     position: relative;
     width: 100%;
+    height: 100%;
 }
 
 .main-content {
@@ -406,8 +412,9 @@ input[type=checkbox] {
 
 .main-article {
     background-color: var(--mainBg);
-    border-radius: 50px 50px 0px 0px;
+    border-radius: 50px;
     padding-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .sections {
