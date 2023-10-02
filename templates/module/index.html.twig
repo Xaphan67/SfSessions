@@ -16,14 +16,14 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th class="width15 center">Actions</th>
+                <th class="width15 center responsive-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for categorie in categories %}
             <tr>
                 <td>{{ categorie }}</td>
-                <td class="center">
+                <td class="center responsive-actions">
                     <div class="actions-multiple">
                         <a class="btn" href="{{ path('edit_categorie', {'id':categorie.id}) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -55,7 +55,7 @@
             <tr>
                 <th>Nom</th>
                 <th class="width25">Catégorie</th>
-                <th class="width15 center">Actions</th>
+                <th class="width15 center responsive-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -63,7 +63,7 @@
             <tr>
                 <td>{{ module }}</td>
                 <td>{{ module.categorie }}</td>
-                <td class="center">
+                <td class="center responsive-actions">
                     <div class="actions-multiple">
                         <a class="btn" href="{{ path('edit_module', {'id':module.id}) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

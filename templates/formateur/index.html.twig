@@ -16,24 +16,33 @@
         <thead>
             <tr>
                 <th class="width20">Nom et Prénom</th>
-                <th class="width5 center">Sexe</th>
-                <th class="width10 center">Date de naissance</th>
-                <th class="width20">Ville</th>
-                <th class="width15">Email</th>
-                <th class="width15 center">Telephone</th>
-                <th class="width15 center">Actions</th>
+                <th class="width5 center responsive-table-hide">Sexe</th>
+                <th class="width10 center responsive-table-hide">Date de naissance</th>
+                <th class="width20 responsive-table-hide">Ville</th>
+                <th class="width15 responsive-table-hide">Email</th>
+                <th class="width15 center responsive-table-hide">Telephone</th>
+                <th class="width15 center responsive-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for formateur in formateurs %}
             <tr>
-                <td><a href="{{ path('show_formateur', {'id':formateur.id}) }}">{{ formateur}}</a></td>
-                <td class="center">{{ formateur.sexe }}</td>
-                <td class="center">{{ formateur.dateNaissance | date("d/m/Y") }}</td>
-                <td>{{ formateur.ville }}</td>
-                <td>{{ formateur.email }}</td>
-                <td class="center">{{ formateur.telephone }}</td>
-                <td class="center">
+                <td>
+                    <a href="{{ path('show_formateur', {'id':formateur.id}) }}">{{ formateur}}</a>
+                    <div class="responsive-show">
+                        <br>Sexe : {{ formateur.sexe }}
+                        <br>Date de naissance : {{ formateur.dateNaissance | date("d/m/Y") }}
+                        <br>Ville : {{ formateur.ville }}
+                        <br>Email : {{ formateur.email }}
+                        <br>Telephone : {{ formateur.telephone }}
+                    </div>
+                </td>
+                <td class="center responsive-table-hide">{{ formateur.sexe }}</td>
+                <td class="center responsive-table-hide">{{ formateur.dateNaissance | date("d/m/Y") }}</td>
+                <td class="responsive-table-hide">{{ formateur.ville }}</td>
+                <td class="responsive-table-hide">{{ formateur.email }}</td>
+                <td class="center responsive-table-hide">{{ formateur.telephone }}</td>
+                <td class="center responsive-actions">
                     <div class="actions-multiple">
                         <a class="btn" href="{{ path('edit_formateur', {'id':formateur.id}) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

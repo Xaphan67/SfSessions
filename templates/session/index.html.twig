@@ -16,26 +16,34 @@
         <thead>
             <tr>
                 <th class="width25">Formation</th>
-                <th class="width25">Nom</th>
-                <th class="width5 center">Places théoriques</th>
-                <th class="width5 center">Places réservées</th>
-                <th class="width5 center">Places restantes</th>
-                <th class="width10 center">Date de début</th>
-                <th class="width10 center">Date de fin</th>
-                <th class="width15 center">Actions</th>
+                <th class="width25 responsive-table-hide">Nom</th>
+                <th class="width5 center responsive-table-hide">Places théoriques</th>
+                <th class="width5 center responsive-table-hide">Places réservées</th>
+                <th class="width5 center responsive-table-hide">Places restantes</th>
+                <th class="width10 center responsive-table-hide">Date de début</th>
+                <th class="width10 center responsive-table-hide">Date de fin</th>
+                <th class="width15 center responsive-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for session in sessions %}
             <tr>
-                <td>{{ session.formation }}</td>
-                <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
-                <td class="center">{{ session.places }}</td>
-                <td class="center">{{ session.stagiaires | length }}</td>
-                <td class="center">{{ session.places - session.stagiaires | length }}</td>
-                <td class="center">{{ session.dateDebut | date("d/m/Y") }}</td>
-                <td class="center">{{ session.dateFin | date("d/m/Y") }}</td>
-                <td class="center">
+                <td>
+                    {{ session.formation }}
+                    <div class="responsive-show">
+                        <br><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
+                        <br>{{ session.places - session.stagiaires | length }} / {{ session.places }} stagiaires inscrits
+                        <br>Début : {{ session.dateDebut | date("d/m/Y") }}
+                        <br>Fin : {{ session.dateFin | date("d/m/Y") }}
+                    </div>
+                </td>
+                <td class="responsive-table-hide"><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+                <td class="center responsive-table-hide">{{ session.places }}</td>
+                <td class="center responsive-table-hide">{{ session.stagiaires | length }}</td>
+                <td class="center responsive-table-hide">{{ session.places - session.stagiaires | length }}</td>
+                <td class="center responsive-table-hide">{{ session.dateDebut | date("d/m/Y") }}</td>
+                <td class="center responsive-table-hide">{{ session.dateFin | date("d/m/Y") }}</td>
+                <td class="center responsive-actions">
                     <div class="actions-multiple">
                         <a class="btn" href="{{ path('edit_session', {'id':session.id}) }}" title="Modifier">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

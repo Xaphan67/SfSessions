@@ -16,24 +16,33 @@
         <thead>
             <tr>
                 <th class="width20">Nom et Prénom</th>
-                <th class="width5 center">Sexe</th>
-                <th class="width10 center">Date de naissance</th>
-                <th class="width20">Ville</th>
-                <th class="width15">Email</th>
-                <th class="width15 center">Telephone</th>
-                <th class="width15 center">Actions</th>
+                <th class="width5 center responsive-table-hide">Sexe</th>
+                <th class="width10 center responsive-table-hide">Date de naissance</th>
+                <th class="width20 responsive-table-hide">Ville</th>
+                <th class="width15 responsive-table-hide">Email</th>
+                <th class="width15 center responsive-table-hide">Telephone</th>
+                <th class="width15 center responsive-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for stagiaire in stagiaires %}
             <tr>
-                <td><a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire}}</a></td>
-                <td class="center">{{ stagiaire.sexe }}</td>
-                <td class="center">{{ stagiaire.dateNaissance | date("d/m/Y") }}</td>
-                <td>{{ stagiaire.ville }}</td>
-                <td>{{ stagiaire.email }}</td>
-                <td class="center">{{ stagiaire.telephone }}</td>
-                <td class="center">
+                <td>
+                    <a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire}}</a>
+                    <div class="responsive-show">
+                        <br>Sexe : {{ stagiaire.sexe }}
+                        <br>Date de naissance : {{ stagiaire.dateNaissance | date("d/m/Y") }}
+                        <br>Ville : {{ stagiaire.ville }}
+                        <br>Email : {{ stagiaire.email }}
+                        <br>Telephone : {{ stagiaire.telephone }}
+                    </div>
+                </td>
+                <td class="center responsive-table-hide">{{ stagiaire.sexe }}</td>
+                <td class="center responsive-table-hide">{{ stagiaire.dateNaissance | date("d/m/Y") }}</td>
+                <td class="responsive-table-hide">{{ stagiaire.ville }}</td>
+                <td class="responsive-table-hide">{{ stagiaire.email }}</td>
+                <td class="center responsive-table-hide">{{ stagiaire.telephone }}</td>
+                <td class="center responsive-actions">
                     <div class="actions-multiple">
                         <a class="btn" href="{{ path('edit_stagiaire', {'id':stagiaire.id}) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

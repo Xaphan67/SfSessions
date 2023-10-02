@@ -16,14 +16,14 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th class="width15 center">Actions</th>
+                <th class="width15 center responsive-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for formation in formations %}
             <tr>
                 <td>{{ formation }}</td>
-                <td class="center">
+                <td class="center responsive-actions">
                     <div class="actions-multiple">
                         <a class="btn" href="{{ path('edit_formation', {'id':formation.id}) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

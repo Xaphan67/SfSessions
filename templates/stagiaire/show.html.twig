@@ -28,18 +28,25 @@
         <thead>
             <tr>
                 <th class="width25">Formation</th>
-                <th>Session</th>
-                <th class="width10 center">Date de début</th>
-                <th class="width10 center">Date de fin</th>
+                <th class="responsive-table-hide">Session</th>
+                <th class="width10 center responsive-table-hide">Date de début</th>
+                <th class="width10 center responsive-table-hide">Date de fin</th>
             </tr>
         </thead>
         <tbody>
             {% for session in stagiaire.sessions %}
             <tr>
-                <td>{{ session.formation }}</td>
-                <td><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
-                <td class="center">{{ session.dateDebut | date("d/m/Y") }}</td>
-                <td class="center">{{ session.dateFin | date("d/m/Y") }}</td>
+                <td>
+                    {{ session.formation }}
+                    <div class="responsive-show">
+                        <br><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
+                        <br>Début : {{ session.dateDebut | date("d/m/Y") }}
+                        <br>Fin : {{ session.dateFin | date("d/m/Y") }}
+                    </div>
+                </td>
+                <td class="responsive-table-hide"><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+                <td class="center responsive-table-hide">{{ session.dateDebut | date("d/m/Y") }}</td>
+                <td class="center responsive-table-hide">{{ session.dateFin | date("d/m/Y") }}</td>
             </tr>
             {% endfor %}
         </tbody>

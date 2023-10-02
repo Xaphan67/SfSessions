@@ -97,17 +97,23 @@
                 <thead>
                     <tr>
                         <th>Module</th>
-                        <th class="width25">Catégorie</th>
-                        <th class="width15 center">Durée</th>
+                        <th class="width25 responsive-table-hide">Catégorie</th>
+                        <th class="width15 center responsive-table-hide">Durée</th>
                         <th class="width15 center">Retirer</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for programme in session.programmes %}
                     <tr>
-                        <td>{{ programme.module }}</td>
-                        <td>{{ programme.module.categorie}}</td>
-                        <td class="center">{{ programme.nbJours }} jour{% if programme.nbJours > 1 %}s{% endif %}</td>
+                        <td>
+                            {{ programme.module }}
+                            <div class="responsive-show">
+                                <br>Catégorie : {{ programme.module.categorie}}</a>
+                                <br>Durée : {{ programme.nbJours }} jour{% if programme.nbJours > 1 %}s{% endif %}
+                            </div>
+                        </td>
+                        <td class="responsive-table-hide">{{ programme.module.categorie}}</td>
+                        <td class="center responsive-table-hide">{{ programme.nbJours }} jour{% if programme.nbJours > 1 %}s{% endif %}</td>
                         <td class="center">
                             <a class="btn btn-center"
                                 href="{{ path('removeModule_session', {'id':session.id, 'programme':programme.id}) }}">
@@ -134,20 +140,22 @@
                 <thead>
                     <tr>
                         <th>Module</th>
-                        <th class="width25">Catégorie</th>
-                        <th class="width25 center">Durée</th>
+                        <th class="width25 responsive-table-hide">Catégorie</th>
+                        <th class="width25 center responsive-table-hide">Durée</th>
                         <th class="width15 center">Ajouter</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for module in modulesNonProgrammes %}
                     <tr>
-                        <td>{{ module }}</td>
-                        <td>{{ module.categorie}}</td>
+                        <td>
+                            {{ module }}
+                        </td>
+                        <td class="responsive-table-hide">{{ module.categorie}}</td>
                         <form action="{{ path('addModule_session', {'id':session.id, 'module':module.id}) }}"
                             method="post">
-                            <td class="form-duree"><input class="input-duree" type="number" name="duree" id="duree"
-                                    min="1" required> jours</td>
+                            <td class="form-duree">
+                                <input class="input-duree" type="number" name="duree" id="duree" min="1" required> jours</td>
                             <td>
                                 <button class="btn btn-center btn-no-border" type="submit" name="submit" id="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
