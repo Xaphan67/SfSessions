@@ -37,7 +37,7 @@
                         <br>Fin : {{ session.dateFin | date("d/m/Y") }}
                     </div>
                 </td>
-                <td class="responsive-table-hide"><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a></td>
+                <td class="responsive-table-hide">{{ session.formation }}</td>
                 <td class="center responsive-table-hide">{{ session.places }}</td>
                 <td class="center responsive-table-hide">{{ session.stagiaires | length }}</td>
                 <td class="center responsive-table-hide">{{ session.places - session.stagiaires | length }}</td>
