@@ -14,8 +14,8 @@
     <table>
         <thead>
             <tr>
-                <th class="width15">Formation</th>
                 <th class="width25 responsive-table-hide">Session</th>
+                <th class="width15">Formation</th> 
                 <th class="width15 center responsive-table-hide">Date de début</th>
                 <th class="width15 center responsive-table-hide">Date de fin</th>
                 <th class="width10 center responsive-table-hide">Inscrits</th>
@@ -26,9 +26,9 @@
             {% for session in sessionsEnCours %}
             <tr>
                 <td>
-                    {{ session.formation }}
+                    <a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
                     <div class="responsive-show">
-                        <br><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
+                        <br>{{ session.formation }}
                         <br>{{ session.places - session.stagiaires | length }} / {{ session.places }} stagiaires inscrits
                         <br>Début : {{ session.dateDebut | date("d/m/Y") }}
                         <br>Fin : {{ session.dateFin | date("d/m/Y") }}
@@ -50,7 +50,7 @@
         </tbody>
     </table>
     {% else %}
-    <p>Il n'y à aucune session en cours.</p>
+    <p>Il n'y a aucune session en cours.</p>
     {% endif %}
 </div>
 
@@ -60,8 +60,8 @@
     <table>
         <thead>
             <tr>
-                <th class="width15">Formation</th>
                 <th class="width25 responsive-table-hide">Session</th>
+                <th class="width15">Formation</th>
                 <th class="width15 center responsive-table-hide">Date de début</th>
                 <th class="width15 center responsive-table-hide">Date de fin</th>
                 <th class="width10 center responsive-table-hide">Inscrits</th>
@@ -72,9 +72,9 @@
             {% for session in sessionsAVenir %}
             <tr>
                 <td>
-                    {{ session.formation }}
+                    <a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
                     <div class="responsive-show">
-                        <br><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
+                        <br>{{ session.formation }}
                         <br>{{ session.places - session.stagiaires | length }} / {{ session.places }} stagiaires inscrits
                         <br>Début : {{ session.dateDebut | date("d/m/Y") }}
                         <br>Fin : {{ session.dateFin | date("d/m/Y") }}
@@ -96,7 +96,7 @@
         </tbody>
     </table>
     {% else %}
-    <p>Il n'y à aucune session à venir.</p>
+    <p>Il n'y a aucune session à venir.</p>
     {% endif %}
 </div>
 
@@ -106,8 +106,8 @@
     <table>
         <thead>
             <tr>
-                <th class="width15">Formation</th>
                 <th class="width25 responsive-table-hide">Session</th>
+                <th class="width15">Formation</th>
                 <th class="width15 center responsive-table-hide">Date de début</th>
                 <th class="width15 center responsive-table-hide">Date de fin</th>
                 <th class="width10 center responsive-table-hide">Inscrits</th>
@@ -118,9 +118,9 @@
             {% for session in sessionsPasses %}
             <tr>
                 <td>
-                    {{ session.formation }}
+                    <a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
                     <div class="responsive-show">
-                        <br><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
+                        <br>{{ session.formation }}
                         <br>{{ session.places - session.stagiaires | length }} / {{ session.places }} stagiaires inscrits
                         <br>Début : {{ session.dateDebut | date("d/m/Y") }}
                         <br>Fin : {{ session.dateFin | date("d/m/Y") }}
@@ -142,7 +142,7 @@
         </tbody>
     </table>
     {% else %}
-    <p>Il n'y à aucune sessions passées.</p>
+    <p>Il n'y a aucune sessions passées.</p>
     {% endif %}
 </div>
 

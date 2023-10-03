@@ -239,8 +239,6 @@ td:not(:first-child):not(:last-child) {
     min-width: 100px;
 }
 
-
-
 .width25 {
     width: 25%;
 }
@@ -259,6 +257,10 @@ td:not(:first-child):not(:last-child) {
 
 .width5 {
     width: 5%;
+}
+
+.max100 {
+    width: 70px;
 }
 
 .responsive-table-hide {
@@ -409,7 +411,6 @@ select:focus {
 }
 
 /* -- Menu burger -- */
-
 @media only screen and (max-width: 767px) {
     
     .menu {
@@ -553,55 +554,6 @@ select:focus {
 
     h1 {
         text-align: left;
-        max-height: 65px;
-    }
-
-    /* Calendrier */
-
-    .fc-button-group {
-        display: inline-flex !important;
-    }
-    
-    /* Tableaux */
-
-    thead {
-        display: table-header-group;
-        background-color: var(--tableColor);
-        color: var(--tableTextHeader);
-        font-size: 16px;
-    }
-    
-    th {
-        padding-inline: 10px;
-        text-align: left;
-        font-weight: initial;
-    }
-    
-    th:first-child {
-        border-radius: 25px 0px 0px 25px;
-        border-right: 1px solid var(--tableHeaderBorder);
-    }
-    
-    th:last-child {
-        border-radius: 0px 25px 25px 0px;
-        border-left: 1px solid var(--tableHeaderBorder);
-    }
-    
-    th:not(:first-child):not(:last-child) {
-        border-left: 1px solid var(--tableHeaderBorder);
-        border-right: 1px solid var(--tableHeaderBorder);
-    }
-
-    .responsive-table-hide {
-        display: table-cell;
-    }
-
-    .responsive-show {
-        display: none;
-    }
-
-    .responsive-actions {
-        width: 10%;
     }
 
     /* Formulaires */
@@ -617,7 +569,6 @@ select:focus {
         column-gap: 20px;
         flex-direction: row;
         row-gap: 00px;
-        width: 80%;
         margin: auto;
     }
     
@@ -685,6 +636,87 @@ select:focus {
         background-color: var(--navSelected);
     }
 
+    /* Tablaux */
+
+    .max100 {
+        width: 100px;
+    }
+
+    /* Classes */
+
+    .main-content {
+        margin: 130px 20px 0px 20px;
+    }
+
+    .actions-multiple {
+        flex-direction: row;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+}
+
+/* tablettes et ordinateurs */
+@media only screen and (min-width: 1024px) {
+
+    /* Calendrier */
+
+    .fc-button-group {
+        display: inline-flex !important;
+    }
+    
+    /* Formulaires */
+
+    .form-row {
+        width: 80%;
+    }
+
+    /* Tableaux */
+
+    thead {
+        display: table-header-group;
+        background-color: var(--tableColor);
+        color: var(--tableTextHeader);
+        font-size: 16px;
+    }
+    
+    th {
+        padding-inline: 10px;
+        text-align: left;
+        font-weight: initial;
+    }
+    
+    th:first-child {
+        border-radius: 25px 0px 0px 25px;
+        border-right: 1px solid var(--tableHeaderBorder);
+    }
+    
+    th:last-child {
+        border-radius: 0px 25px 25px 0px;
+        border-left: 1px solid var(--tableHeaderBorder);
+    }
+    
+    th:not(:first-child):not(:last-child) {
+        border-left: 1px solid var(--tableHeaderBorder);
+        border-right: 1px solid var(--tableHeaderBorder);
+    }
+
+    .responsive-table-hide {
+        display: table-cell;
+    }
+
+    .responsive-show {
+        display: none;
+    }
+
+    .responsive-actions {
+        width: 10%;
+    }
+    
     /* Classes */
 
     .sections {
@@ -702,15 +734,4 @@ select:focus {
     .main-content {
         margin: 80px 50px 0px 50px;
     }
-
-    .actions-multiple {
-        flex-direction: row;
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
-
-    .section {
-        padding: 20px;
-    }
-
 }

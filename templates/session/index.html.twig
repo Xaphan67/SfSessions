@@ -15,8 +15,8 @@
     <table>
         <thead>
             <tr>
-                <th class="width25">Formation</th>
                 <th class="width25 responsive-table-hide">Nom</th>
+                <th class="width25">Formation</th>
                 <th class="width5 center responsive-table-hide">Places théoriques</th>
                 <th class="width5 center responsive-table-hide">Places réservées</th>
                 <th class="width5 center responsive-table-hide">Places restantes</th>
@@ -29,9 +29,9 @@
             {% for session in sessions %}
             <tr>
                 <td>
-                    {{ session.formation }}
+                    <a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
                     <div class="responsive-show">
-                        <br><a href="{{ path('show_session', {'id':session.id}) }}">{{ session }}</a>
+                        <br>{{ session.formation }}
                         <br>{{ session.places - session.stagiaires | length }} / {{ session.places }} stagiaires inscrits
                         <br>Début : {{ session.dateDebut | date("d/m/Y") }}
                         <br>Fin : {{ session.dateFin | date("d/m/Y") }}

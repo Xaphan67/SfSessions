@@ -29,14 +29,14 @@
                 <thead>
                     <tr>
                         <th>Stagiaire</th>
-                        <th class="width30 center">Désinscrire</th>
+                        <th class="max100 center">Désinscrire</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for stagiaire in session.stagiaires %}
                     <tr>
                         <td><a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire }}</a></td>
-                        <td class="center">
+                        <td class="max100 center">
                             <a class="btn btn-center"
                                 href="{{ path('removeStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -61,14 +61,14 @@
                     <thead>
                         <tr>
                             <th>Stagiaire</th>
-                            <th class="width30 center">Inscrire</th>
+                            <th class="max100 center">Inscrire</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for stagiaire in stagiairesNonInscrits %}
                         <tr>
                             <td><a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire }}</a></td>
-                            <td class="center">
+                            <td class="max100 center">
                                 <a class="btn btn-center"
                                     href="{{ path('addStagiaire_session', {'id':session.id, 'stagiaire':stagiaire.id}) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -99,7 +99,7 @@
                         <th>Module</th>
                         <th class="width25 responsive-table-hide">Catégorie</th>
                         <th class="width15 center responsive-table-hide">Durée</th>
-                        <th class="width15 center">Retirer</th>
+                        <th class="max100 center">Retirer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +114,7 @@
                         </td>
                         <td class="responsive-table-hide">{{ programme.module.categorie}}</td>
                         <td class="center responsive-table-hide">{{ programme.nbJours }} jour{% if programme.nbJours > 1 %}s{% endif %}</td>
-                        <td class="center">
+                        <td class="max100 center">
                             <a class="btn btn-center"
                                 href="{{ path('removeModule_session', {'id':session.id, 'programme':programme.id}) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -142,7 +142,7 @@
                         <th>Module</th>
                         <th class="width25 responsive-table-hide">Catégorie</th>
                         <th class="width25 center responsive-table-hide">Durée</th>
-                        <th class="width15 center">Ajouter</th>
+                        <th class="max100 center">Ajouter</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -156,7 +156,7 @@
                             method="post">
                             <td class="form-duree">
                                 <input class="input-duree" type="number" name="duree" id="duree" min="1" required> jours</td>
-                            <td>
+                            <td class="max100">
                                 <button class="btn btn-center btn-no-border" type="submit" name="submit" id="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
                                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
